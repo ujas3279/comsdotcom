@@ -28,7 +28,7 @@ const ManageOrders = () => {
     
 
     return (
-        <Base title="Welcome admin" description="Manage Orders here">
+        <>
       <h2 className="mb-4">All Orders:</h2>
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
@@ -62,7 +62,7 @@ const ManageOrders = () => {
           })}
         </div>
       </div>
-    </Base>
+    </>
     )
 }
 

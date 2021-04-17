@@ -61,7 +61,7 @@ const OrderDetail = ({match}) => {
 
 
     return (
-        <Base title="Order detail" description="">
+        <>
             <div className=" mr-5 col-12" ><span className="color-black">Name of user:</span> {User_name}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order Status:  </span> {status}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order amount:</span> {amount}</div>
@@ -79,7 +79,7 @@ const OrderDetail = ({match}) => {
 
         </div>
 
-        </Base>
+        </>
     )
 }
 

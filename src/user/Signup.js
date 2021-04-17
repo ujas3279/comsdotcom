@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signup } from "../auth/helper";
 import * as emailjs from "emailjs-com";
+import { Form, Button, Row, Col } from 'react-bootstrap'
+import FormContainer from './helper/FormContainer'
 require('dotenv').config();
 
 const Signup = () => {
@@ -16,10 +18,11 @@ const Signup = () => {
     password: "",
     confirm_password:"",
     error: "",
-    success: false
+    success: false,
+    didRedirect: false
   });
 
-  const { name, email, password,confirm_password, error, success } = values;
+  const { name, email, password,confirm_password, error, success, didRedirect } = values;
 
   const handleChange = name => event => {
 
@@ -66,7 +69,8 @@ const Signup = () => {
             password: "",
             confirm_password:"",
             error: "",
-            success: true
+            success: true,
+            didRedirect: true
           });
         }
       })
@@ -77,54 +81,71 @@ const Signup = () => {
     }
   };
 
+  const performRedirect = () => {
+    if (didRedirect) {
+      return <Redirect to="/signin" />
+    }
+  };
+
   const signUpForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
-            <div className="form-group">
-              <label className="text-light">Name</label>
-              <input
-                className="form-control"
-                onChange={handleChange("name")}
-                type="text"
-                value={name}
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-light">Email</label>
-              <input
-                className="form-control"
-                onChange={handleChange("email")}
-                type="email"
-                value={email}
-              />
-            </div>
+      <FormContainer>
+      <h1>Sign Up</h1>
+      <Form>
+        <Form.Group controlId='name'>
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Enter name'
+            value={name}
+            onChange={handleChange("name")}
+          ></Form.Control>
+        </Form.Group>
 
-            <div className="form-group">
-              <label className="text-light">Password</label>
-              <input
-                onChange={handleChange("password")}
-                className="form-control"
-                type="password"
-                value={password}
-              />
-            </div>
-            <div className="form-group">
-              <label className="text-light">Confirm Password</label>
-              <input
-                onChange={handleChange("confirm_password")}
-                className="form-control"
-                type="password"
-                value={confirm_password}
-              />
-            </div>
-            <button onClick={onSubmit} className="btn btn-success btn-block">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
+        <Form.Group controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
+            value={email}
+            onChange={handleChange("email")}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Enter password'
+            value={password}
+            onChange={handleChange("password")}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='confirmPassword'>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Confirm password'
+            value={confirm_password}
+            onChange={handleChange("confirm_password")}
+          ></Form.Control>
+        </Form.Group>
+
+        <Button onClick={onSubmit} type='submit' variant='primary'>
+          Register
+        </Button>
+      </Form>
+
+      <Row className='py-3'>
+        <Col>
+          Have an Account?{' '}
+          <Link to="/signin">
+            Login
+          </Link>
+        </Col>
+      </Row>
+    </FormContainer>
     );
   };
 
@@ -160,12 +181,12 @@ const Signup = () => {
   };
 
   return (
-    <Base title="Sign up page" description="A page for user to sign up!">
+    <>
       {successMessage()}
       {errorMessage()}
       {signUpForm()}
-      
-    </Base>
+      {performRedirect()}
+    </>
   );
 };
 
