@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from "react";
-import "../styles.css";
+
 import { API } from "../backend";
 import Base from "./Base";
-import Card from "./Card";
+import Pcard from "./Card";
 import { getProducts } from "./helper/coreapicalls";
+import { Row, Col } from 'react-bootstrap'
+import Menu from "./Menu";
 
 
 export default function Home() {
@@ -27,20 +29,15 @@ export default function Home() {
   }, [])
 
   return (
-    <Base title="Home Page" description="Welcome to the Tshirt Store">
-      <div className="row text-center">
-        <h1 className="text-white"> All products</h1>
-        <div className="row">
-          {products.map((product,index) => {
-            return(
-              <div key={index} className="col-4 mb-4">
-                <Card product={product} />
-              </div>
-            )
-          })}
-
-        </div>
-      </div>
-    </Base>
+    <>
+      <h1>Latest Products</h1>
+      <Row>
+        {products.map((product, index) => (
+            <Col key={index} sm={12} md={6} lg={4} xl={3}>
+              <Pcard product={product} />
+            </Col>
+        ))}
+      </Row>
+    </>
   );
 }

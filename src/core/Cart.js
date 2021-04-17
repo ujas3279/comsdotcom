@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles.css";
 import { API } from "../backend";
 import Base from "./Base";
-import Card from "./Card";
+import Pcard from "./Card";
 import { loadCart } from "./helper/CartHelper";
 import StripeCheckout from "./StripeCheckout";
 
@@ -19,7 +19,7 @@ const Cart = () => {
       <div>
         <h2>This section is to load products</h2>
         {products.map((product, index) => (
-          <Card
+          <Pcard
             key={index}
             product={product}
             removeFromCart={true}
@@ -31,25 +31,17 @@ const Cart = () => {
       </div>
     );
   };
-
-  const loadCheckout = () => {
-    return (
-      <div>
-        <h2>This section for checkout</h2>
-      </div>
-    );
-  };
   
 
   return (
-    <Base title="Cart Page" description="Ready to checkout">
+    <>
       <div className="row text-center">
         <div className="col-6">{loadAllProducts()}</div>
         <div className="col-6">
           <StripeCheckout products={products} setReload={setReload} />
         </div>
       </div>
-    </Base>
+    </>
   );
 };
 

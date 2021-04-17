@@ -19,11 +19,17 @@ import UpdateOrderStatus from "./admin/updateOrderStatus";
 import OrderDetail from "./admin/OrderDetail";
 import Setting from "./customer/Setting";
 import CustomerOrderDetail from "./customer/CustomerOrderDetail"
+import Menu from "./core/Menu";
+import Footer from './core/Footer'
+import { Container} from 'react-bootstrap'
 
 
 const Routes = () => {
   return (
     <BrowserRouter>
+    <Menu />
+      <main className='py-3'>
+        <Container>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/signup" exact component={Signup} />
@@ -43,6 +49,9 @@ const Routes = () => {
         <AdminRoute path="/admin/orderstatus/update/:orderId" exact component={UpdateOrderStatus}/>
         <AdminRoute path="/admin/order/detail/:orderId" exact component={OrderDetail}/>
       </Switch>
+      </Container>
+      </main>
+      <Footer />
     </BrowserRouter>
   );
 };

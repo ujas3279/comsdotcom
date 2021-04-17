@@ -1,11 +1,13 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, Fragment} from 'react'
 import { Redirect } from 'react-router';
 import { addItemToCart, removeItemFromCart } from './helper/CartHelper';
 import ImageHepler from './helper/ImageHepler';
+import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+import {ListGroup, Button } from 'react-bootstrap'
 
 
-
-const Card = ({
+const Pcard = ({
     product,
     addtoCart = true,
     removeFromCart = false,
@@ -35,12 +37,14 @@ const Card = ({
     const showAddToCart = addtoCart => {
       return (
         addtoCart && (
-          <button
-            onClick={addToCart}
-            className="btn btn-block btn-outline-success mt-2 mb-2"
-          >
-            Add to Cart
-          </button>
+                    <Button
+                      onClick={addToCart}
+                      className='btn-block'
+                      type='button'
+                    >
+                      Add To Cart
+                    </Button>
+                  
         )
       );
     };
@@ -64,24 +68,35 @@ const Card = ({
    
 
     return (
-      <div className="card text-white bg-dark border border-info ">
-        <div className="card-header lead">{cartTitle}</div>
-        <div className="card-body">
+      <Card className='my-3 p-3 rounded'>
           {getARedirect(redirect)}
           <ImageHepler product={product} />
-          <p className="lead bg-success font-weight-normal text-wrap">
-            {cartDescrption}
-          </p>
-          <p className="btn btn-success rounded  btn-sm px-4"> <i class="fa fa-inr"></i> {cartPrice}</p>
-          <div className="row">
-            <div className="col-12">{showAddToCart(addtoCart)}</div>
-            <div className="col-12">{showRemoveFromCart(removeFromCart)}</div>
-            
-            
-          </div>
-        </div>
-      </div>
+
+        <Card.Body>
+            <Card.Title as='h3'>
+              <strong>{cartTitle}</strong>
+            </Card.Title>
+            <Card.Text as='div'>{cartDescrption}</Card.Text>
+
+          <Card.Text as='h3'><i class="fa fa-inr"></i>{cartPrice}</Card.Text>      
+          
+          {addtoCart && (
+            <Button onClick={addToCart} className='btn-block' type='button'>
+              Add to Cart
+            </Button>
+          )}
+
+          {removeFromCart && (
+            <Button onClick={() => {
+              removeItemFromCart(product._id);
+              setReload(!reload)}} variant="light" type='button'>
+                <i className='fas fa-trash'></i>
+            </Button>
+          )}
+          
+        </Card.Body>
+      </Card>
     );
   };
   
-  export default Card;
+  export default Pcard;
