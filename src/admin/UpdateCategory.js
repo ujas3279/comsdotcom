@@ -39,9 +39,9 @@ const UpdateCategory = ({match}) => {
       }, []);
 
     const goBack= () => (
-        <div className="mt-5">
-            <Link className="btn btn-sm btn-info mb-3" to="/admin/dashboard">
-                Admin Home
+        <div >
+            <Link className='btn btn-light my-3' to="/admin/dashboard">
+            go back
             </Link>
 
         </div>

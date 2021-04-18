@@ -15,9 +15,9 @@ const AddCategory = () => {
     const {user,token} = isAutheticated();
 
     const goBack= () => (
-        <div className="mt-5">
-            <Link className="btn btn-sm btn-info mb-3" to="/admin/dashboard">
-                Admin Home
+        <div>
+            <Link className='btn btn-light my-3' to="/admin/dashboard">
+                go back
             </Link>
 
         </div>
@@ -83,11 +83,11 @@ const AddCategory = () => {
 
     return (
         <>
-
+            {goBack()}
             <div className="row bg-white rounded">
                 <div className="col-md-8 offset-md-2">
                     {myCatogoryForm()}
-                    {goBack()}
+                    
                     {successMessage()}
                     {warningMessage()}
                 </div>

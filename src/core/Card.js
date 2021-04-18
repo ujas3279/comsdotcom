@@ -89,8 +89,8 @@ const Pcard = ({
           {removeFromCart && (
             <Button onClick={() => {
               removeItemFromCart(product._id);
-              setReload(!reload)}} variant="light" type='button'>
-                <i className='fas fa-trash'></i>
+              setReload(!reload)}} className='btn-block' type='button'>
+                Remove from cart
             </Button>
           )}
           
