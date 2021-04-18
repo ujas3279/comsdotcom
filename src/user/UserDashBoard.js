@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
 import Base from '../core/Base';
-
+import { Row, Col } from 'react-bootstrap'
 
 
 const UserDashBoard = () => {
@@ -14,15 +14,15 @@ const UserDashBoard = () => {
     const adminLeftSide = () => {
         return (
           <div className="card">
-            <h4 className="card-header bg-dark text-white">User Navigation</h4>
+            <h4 className="card-header text-center bg-dark text-white">User Navigation</h4>
             <ul className="list-group">
               <li className="list-group-item">
-                <Link to="/user/orders" className="nav-link text-success">
+                <Link to="/user/orders" className="nav-link text-center">
                   Your Orders
                 </Link>
               </li>
               <li className="list-group-item">
-                <Link to="/user/setting" className="nav-link text-success">
+                <Link to="/user/setting" className="nav-link text-center">
                   Setting
                 </Link>
               </li>
@@ -36,7 +36,7 @@ const UserDashBoard = () => {
       const adminRightSide = () => {
         return (
           <div className="card mb-4">
-            <h4 className="card-header">User Information</h4>
+            <h4 className="card-header text-center">User Information</h4>
             <ul className="list-group">
               <li className="list-group-item">
                 <span className="badge alert-success mr-2">Name:</span> {name}
@@ -54,10 +54,10 @@ const UserDashBoard = () => {
       };
       return (
         <>
-          <div className="row">
-            <div className="col-3">{adminLeftSide()}</div>
-            <div className="col-9">{adminRightSide()}</div>
-          </div>
+          <Row className="py-5">
+        <Col>{adminLeftSide()}</Col>
+        <Col sm={12} md={8}>{adminRightSide()}</Col>
+      </Row>
         </>
       );
     };

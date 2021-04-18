@@ -1,8 +1,10 @@
 import React from 'react'
+import { Row, Col, Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
 import Base from '../core/Base';
 import Card from '../core/Card';
+
 
 const CustomerOrderDetail = () => {
     const {
@@ -11,34 +13,37 @@ const CustomerOrderDetail = () => {
 
       console.log(purchases)
     return (
-      <Base>
-      <Link className="btn btn-info" to={`/user/dashboard`}>
-        <span className="">User Home</span>
+      <>
+      <h2 className="mb-4 text-center">Yours Orders</h2>
+      <Link className='btn btn-light my-3' to={`/user/dashboard`}>
+        go back
       </Link>
-        <div className="row">
-        <div className="col-12">
-          <h2 className="text-center text-white my-3">Total Orders</h2>
-          {purchases.map((order, index) => {
-              return(<div key={index} className="row text-center mb-2 ">
-              <div className="col-4">
-                <h3 className="text-white text-left">{order.name}</h3>
-              </div>
-              <div className="col-4">
-                <Link
-                  className="btn btn-success"
-                  to={`/admin/order/detail/${order._id}`}
-                >
-                  <span className="">Order detail</span>
+
+          <Table striped bordered responsive className='table-sm'>
+            <thead>
+              <tr>
+                <th className="text-center">NAME</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            {purchases.map((order, index) => {
+              return(
+                <tr key={index}>
+                  <td className="text-center py-4">{order.name}</td>
+                  <td className="text-center">
+                  <Link
+                    to={`/admin/order/detail/${order._id}`}
+                  >
+                  <Button className="brn-sm">Order detail</Button>
                 </Link>
-              </div>
-              
-              </div>
+                  </td>
+                  </tr>
               )
-          })}
-          
-        </div>
-      </div>
-      </Base>
+            })}
+            </tbody>
+            </Table>
+      </>
     )
 }
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
+import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
 import { createOrder } from "./helper/OrderHelper";
 import * as emailjs from "emailjs-com";
 require('dotenv').config();
+
 
 const StripeCheckout = ({
   products,
@@ -108,8 +110,20 @@ let famount=0;
 
   return (
     <div>
-      <h3 className="text-white">Total Amount <i class="fa fa-inr"></i> {getFinalAmount()}</h3>
-      {showStripeButton()}
+      <Card>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>
+                Subtotal 
+              </h2>
+              <i class="fa fa-inr"></i>
+              {getFinalAmount()}
+            </ListGroup.Item>
+            <ListGroup.Item>
+            {showStripeButton()}
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
     </div>
   );
 };

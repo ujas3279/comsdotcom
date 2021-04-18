@@ -57,16 +57,12 @@ const Setting = () => {
         );
       };
       return (
-        <Base
-          title="Welcome to User area"
-          description=""
-          className="container bg-success p-4"
-        >
+        <>
           <div className="row">
             <div className="col-3">{adminLeftSide()}</div>
             <div className="col-9">{adminRightSide()}</div>
           </div>
-        </Base>
+        </>
       );
     };
 

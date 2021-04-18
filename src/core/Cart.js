@@ -17,7 +17,6 @@ const Cart = () => {
   const loadAllProducts = () => {
     return (
       <div>
-        <h2>This section is to load products</h2>
         {products.map((product, index) => (
           <Pcard
             key={index}

@@ -6,7 +6,7 @@ import Pcard from "./Card";
 import { getProducts } from "./helper/coreapicalls";
 import { Row, Col } from 'react-bootstrap'
 import Menu from "./Menu";
-
+import { Carousel, Image } from 'react-bootstrap'
 
 export default function Home() {
 
@@ -32,11 +32,11 @@ export default function Home() {
     <>
       <h1>Latest Products</h1>
       <Row>
-        {products.map((product, index) => (
+          {products.map((product, index) => (
             <Col key={index} sm={12} md={6} lg={4} xl={3}>
               <Pcard product={product} />
             </Col>
-        ))}
+          ))}
       </Row>
     </>
   );
