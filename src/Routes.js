@@ -18,10 +18,11 @@ import ManageOrders from "./admin/Orders";
 import UpdateOrderStatus from "./admin/updateOrderStatus";
 import OrderDetail from "./admin/OrderDetail";
 import Setting from "./customer/Setting";
-import CustomerOrderDetail from "./customer/CustomerOrderDetail"
+import CustomerOrders from "./customer/CustomerOrders"
 import Menu from "./core/Menu";
 import Footer from './core/Footer'
 import { Container} from 'react-bootstrap'
+import CustomerOrderDetail from "./customer/CustomerOrderDetail";
 
 
 const Routes = () => {
@@ -37,7 +38,8 @@ const Routes = () => {
         <Route path="/cart" exact component={Cart} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard}/>
         <PrivateRoute path="/user/setting" exact component={Setting}/>
-        <PrivateRoute path="/user/orders" exact component={CustomerOrderDetail}/>
+        <PrivateRoute path="/user/orders/:userId" exact component={CustomerOrders}/>
+        <PrivateRoute path="/user/order/detail/:orderId" exact component={CustomerOrderDetail}/>
         <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard}/>
         <AdminRoute path="/admin/create/category" exact component={AddCategory}/>
         <AdminRoute path="/admin/category/update/:categoryId" exact component={UpdateCategory}/>

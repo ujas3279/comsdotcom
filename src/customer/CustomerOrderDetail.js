@@ -1,50 +1,92 @@
-import React from 'react'
-import { Row, Col, Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { isAutheticated } from '../auth/helper';
+import React,{useState,useEffect} from 'react'
 import Base from '../core/Base';
+import { getOrder } from '../admin/helper/adminapicall';
+
 import Card from '../core/Card';
+import { Link } from 'react-router-dom';
 
 
-const CustomerOrderDetail = () => {
-    const {
-        user: { _id,purchases,role}
-      } = isAutheticated();
 
-      console.log(purchases)
+
+const CustomerOrderDetail = ({match}) => {
+
+    const [values, setValues] = useState({
+        name: "",
+        status: "",
+        amount: "",
+        address: "",
+        transaction_id:"",
+        products:[],
+        error:""
+
+      });
+    
+      const {
+        name,
+        status,
+        amount,
+        address,
+        transaction_id,
+        products,
+        error
+      } = values;
+
+    
+    const preload = (orderId) => {
+        getOrder(orderId).then(data=>{
+            console.log(data[0]);
+            
+
+            if(data.error)
+            {
+                setValues({ ...values, error: data.error });
+            }
+            else
+            {
+              const order=data[0];
+                setValues({
+                    ...values,
+                    name : order.user.name,
+                    status : order.status,
+                    amount: order.amount,
+                    address: order.address,
+                    transaction_id: order.transaction_id,
+                    products: order.products
+                })
+            }
+        })
+    }
+
+    useEffect(() => {
+        preload(match.params.orderId);
+      }, []);
+
+
     return (
-      <>
-      <h2 className="mb-4 text-center">Yours Orders</h2>
-      <Link className='btn btn-light my-3' to={`/user/dashboard`}>
+        <>
+        <Link className='btn btn-light my-3' to={`/user/dashboard`}>
         go back
       </Link>
+            <div className=" mr-5 col-12" ><span className="color-black">Name:</span> {name}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Order Status:  </span> {status}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Order amount:</span> {amount}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Order address:</span> {address}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Transaction:</span> {transaction_id}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Products:</span> </div>
+            <div className="row">
+          {products.map((product,index) => {
+            return(
+              <div key={index}  className="col-4 mb-4">
+                <Card product={product} addtoCart={false} />
+              </div>
+            )
+          })}
 
-          <Table striped bordered responsive className='table-sm'>
-            <thead>
-              <tr>
-                <th className="text-center">NAME</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-            {purchases.map((order, index) => {
-              return(
-                <tr key={index}>
-                  <td className="text-center py-4">{order.name}</td>
-                  <td className="text-center">
-                  <Link
-                    to={`/admin/order/detail/${order._id}`}
-                  >
-                  <Button className="brn-sm">Order detail</Button>
-                </Link>
-                  </td>
-                  </tr>
-              )
-            })}
-            </tbody>
-            </Table>
-      </>
+        </div>
+
+        </>
     )
 }
 
 export default CustomerOrderDetail;
+
