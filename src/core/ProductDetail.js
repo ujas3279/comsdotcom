@@ -1,17 +1,19 @@
 
 import React,{useState,useEffect} from 'react'
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import Base from './Base';
-
-
-import Card from './Card';
-import { removeItemFromCart } from './helper/CartHelper';
+import { Redirect } from 'react-router';
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import {addItemToCart, removeItemFromCart } from './helper/CartHelper';
 import { getProductsById } from './helper/coreapicalls';
+import ImageHepler from './helper/ImageHepler';
 
 
 const ProductDetail=({match})=>{
   const [product, setproduct] = useState("");
   const [error,seterror]=useState("");
-
+  const [redirect, setRedirect] = useState(false);
 
 const preload = (productId) => {
     getProductsById(productId).then(data=>{
@@ -34,11 +36,82 @@ useEffect(() => {
     preload(match.params.productId);
   }, []);
 
+  const addToCart = () => {
+    addItemToCart(product, () => setRedirect(true));
+  };
 
+  const getARedirect = redirect => {
+    if (redirect) {
+      return <Redirect to="/cart" />;
+    }
+  };
 return (
-          <div   className="col-4 mb-4">
-            <Card product={product} addtoCart="false"></Card>
-          </div>
+    <>
+      <Link className='btn btn-light my-3' to='/'>
+        Go Back
+      </Link>
+
+      <Helmet>
+        <title>{product.name}</title>
+        <meta name='description' content={product.description} />
+      </Helmet>
+      {getARedirect(redirect)}
+      <Row>
+            <Col md={6}>
+              
+              <ImageHepler product={product} />
+            </Col>
+            <Col md={3}>
+              <ListGroup variant='flush'>
+                <ListGroup.Item>
+                  <h3>{product.name}</h3>
+                </ListGroup.Item>
+                
+                <ListGroup.Item>Price: <i class="fa fa-inr"></i>{product.price}</ListGroup.Item>
+                <ListGroup.Item>
+                  Description: {product.description}
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+            <Col md={3}>
+              <Card>
+                <ListGroup variant='flush'>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Price:</Col>
+                      <Col>
+                        <strong>${product.price}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Status:</Col>
+                      <Col>
+                        {product.stock > 0 ? 'In Stock' : 'Out Of Stock'}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+
+                  
+
+                  <ListGroup.Item>
+                    <Button
+                      onClick={addToCart}
+                      className='btn-block'
+                      type='button'
+                      disabled={product.stock === 0}
+                    >
+                      Add To Cart
+                    </Button>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          </Row>
+
+    </>
 )
 }  
 export default ProductDetail;
