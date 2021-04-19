@@ -22,7 +22,7 @@ import CustomerOrderDetail from "./customer/CustomerOrderDetail"
 import Menu from "./core/Menu";
 import Footer from './core/Footer'
 import { Container} from 'react-bootstrap'
-
+import ProductDetail from "./core/ProductDetail";
 
 const Routes = () => {
   return (
@@ -35,6 +35,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/cart" exact component={Cart} />
+        <Route path="/product/:productId" exact component={ProductDetail}/>
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard}/>
         <PrivateRoute path="/user/setting" exact component={Setting}/>
         <PrivateRoute path="/user/orders" exact component={CustomerOrderDetail}/>
