@@ -167,7 +167,7 @@ const AddProduct = () => {
           ></Form.File>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button type='submit' onClick={onSubmit} variant='primary'>
               Create Product
             </Button>
           </Form>
