@@ -9,8 +9,8 @@ const ImageHepler = ({product}) => {
     return (
             <Card.Img
                 src={imageurl}
-                alt="photo"
                 variant='top'
+                alt={product.name} fluid
             />
     )
 }

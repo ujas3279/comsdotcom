@@ -70,19 +70,22 @@ const Pcard = ({
     return (
       <Card className='my-3 p-3 rounded'>
           {getARedirect(redirect)}
+          <Link
+            to={`product/${product._id}`}
+          >
           <ImageHepler product={product} />
-         
+          </Link>
         <Card.Body>
         <Link
-                    to={`product/${product._id}`}
-                  >
-            <Card.Title as='h3'>
-              <strong>{cartTitle}</strong>
+            to={`product/${product._id}`}
+          >
+            <Card.Title as='h5'>
+              <name>{cartTitle}</name>
             </Card.Title>
-            <Card.Text as='div'>{cartDescrption}</Card.Text>
+            </Link>
 
-          <Card.Text as='h3'><i class="fa fa-inr"></i>{cartPrice}</Card.Text>      
-          </Link>
+          <Card.Text as='h5'><i class="fa fa-inr"></i>{cartPrice}</Card.Text>      
+          
           {addtoCart && (
             <Button onClick={addToCart} className='btn-block' type='button'>
               Add to Cart
