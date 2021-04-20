@@ -12,6 +12,7 @@ const OrderDetail = ({match}) => {
 
     const [values, setValues] = useState({
         User_name: "",
+        User_email:"",
         status: "",
         amount: "",
         address: "",
@@ -23,6 +24,7 @@ const OrderDetail = ({match}) => {
     
       const {
         User_name,
+        User_email,
         status,
         amount,
         address,
@@ -47,6 +49,7 @@ const OrderDetail = ({match}) => {
                 setValues({
                     ...values,
                     User_name : order.user.name,
+                    User_email:order.user.email,
                     status : order.status,
                     amount: order.amount,
                     address: order.address,
@@ -68,6 +71,7 @@ const OrderDetail = ({match}) => {
         go back
       </Link>
             <div className=" mr-5 col-12" ><span className="color-black">Name of user:</span> {User_name}</div>
+            <div className=" mr-5 col-12" ><span className="color-black">Email of user:</span> {User_email}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order Status:  </span> {status}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order amount:</span> {amount}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order address:</span> {address}</div>
