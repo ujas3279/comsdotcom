@@ -83,9 +83,6 @@ const CustomerOrderDetail = ({match}) => {
                 <strong>Name: </strong> {name}
               </p>
               <p>
-                <strong>Email: </strong>{' '} {email}
-              </p>
-              <p>
                 <strong>Address:</strong>
                 {' '}{address}
               </p>
@@ -110,7 +107,7 @@ const CustomerOrderDetail = ({match}) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          ${amount}
+                        <i class="fa fa-inr"></i>{amount}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -130,7 +127,7 @@ const CustomerOrderDetail = ({match}) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${amount}</Col>
+                  <Col><i class="fa fa-inr"></i>{amount}</Col>
                 </Row>
               </ListGroup.Item>
               
