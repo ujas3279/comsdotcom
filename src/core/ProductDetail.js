@@ -50,11 +50,6 @@ return (
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
-
-      <Helmet>
-        <title>{product.name}</title>
-        <meta name='description' content={product.description} />
-      </Helmet>
       {getARedirect(redirect)}
       <Row>
             <Col md={6}>

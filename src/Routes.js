@@ -21,7 +21,7 @@ import Setting from "./customer/Setting";
 import CustomerOrders from "./customer/CustomerOrders"
 import Menu from "./core/Menu";
 import Footer from './core/Footer'
-import { Container} from 'react-bootstrap;
+import { Container} from 'react-bootstrap'
 import CustomerOrderDetail from "./customer/CustomerOrderDetail";
 import ProductDetail from "./core/ProductDetail";
 

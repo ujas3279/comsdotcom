@@ -95,11 +95,13 @@ let famount=0;
         stripeKey = {process.env.REACT_APP_PUB_KEY}
         token={makePayment}
         amount={getFinalAmount() * 100}
-        name="HandsCraft"
+        name="comsdotcom"
         currency="inr"
         shippingAddress
       >
-        <button className="btn btn-success">Process To Checkout</button>
+        <Button type='button'
+                className='btn-block'
+                disabled={products.length === 0}>Process To Checkout</Button>
       </StripeCheckoutButton>
     ) : (
       <Link to="/signin">

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
 import Base from '../core/Base';
 import { getOrder,updateStatus } from './helper/adminapicall';
+import { Form, Button } from 'react-bootstrap'
+import FormContainer from '../user/helper/FormContainer'
 
 
 const UpdateOrderStatus = ({match}) => {
@@ -44,7 +46,7 @@ const UpdateOrderStatus = ({match}) => {
         </div>
     )
     
-    const handleChage = (event) => {
+    const handleChange = (event) => {
         setError("");
         setStatus(event.target.value);
     };
@@ -81,46 +83,37 @@ const UpdateOrderStatus = ({match}) => {
     };
 
     const updateOrderStatusForm = () => (
-        <form>
-            <div className="form-group">
-                <p className="lead"> Enter the orderStatus</p>
-
-                <select
-                onChange={handleChage}
-                className="form-control"
-                value={status}
-                autoFocus
-                required
-                >
-                <option>Select</option>
-                {allStatus &&
+        <FormContainer>
+            <h1>Update Order Status</h1>
+            <Form>
+            {successMessage()}
+            <Form.Group controlId='name'>
+              <Form.Label>Name</Form.Label>
+              <Form.Control as= "select"
+                onChange={handleChange}
+              >
+                  <option>Select</option>
+                  {allStatus &&
                     allStatus.map((stat, index) => (
                     <option key={index} >
                         {stat}
                     </option>
                     ))}
-                </select>
+              </Form.Control>
+            </Form.Group>
 
-                <button onClick={onSubmit} className="btn btn-outline-info">
-                    Update status
-                </button>
-
-            </div>
-        </form>
+            <Button type='submit' onClick={onSubmit} variant='primary'>
+              Update Status
+            </Button> 
+            </Form>
+        </FormContainer>
+        
     )
 
     return (
         <>
-
-            <div className="row bg-white rounded">
-                <div className="col-md-8 offset-md-2">
-                    {updateOrderStatusForm()}
-                    {goBack()}
-                    {successMessage()}
-                    {warningMessage()}
-                </div>
-            </div>
-
+        {goBack()}
+        {updateOrderStatusForm()}
         </>
     )
 }

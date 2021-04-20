@@ -31,40 +31,7 @@ const Pcard = ({
       if (redirect) {
         return <Redirect to="/cart" />;
       }
-    };
-  
-    const showAddToCart = addtoCart => {
-      return (
-        addtoCart && (
-                    <Button
-                      onClick={addToCart}
-                      className='btn-block'
-                      type='button'
-                    >
-                      Add To Cart
-                    </Button>
-                  
-        )
-      );
-    };
-  
-    const showRemoveFromCart = removeFromCart => {
-      return (
-        removeFromCart && (
-          <button
-            onClick={() => {
-              removeItemFromCart(product._id);
-              setReload(!reload);
-            }}
-            className="btn btn-block btn-outline-danger mt-2 mb-2"
-          >
-            Remove from cart
-          </button>
-        )
-      );
-    };
-
-   
+    };  
 
     return (
       <Card className='my-3 p-3 rounded'>
