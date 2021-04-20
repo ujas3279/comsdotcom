@@ -86,11 +86,7 @@ const Pcard = ({
 
           <Card.Text as='h5'><i class="fa fa-inr"></i>{cartPrice}</Card.Text>      
           
-          {addtoCart && (
-            <Button onClick={addToCart} className='btn-block' type='button'>
-              Add to Cart
-            </Button>
-          )}
+          
 
           {removeFromCart && (
             <Button onClick={() => {
