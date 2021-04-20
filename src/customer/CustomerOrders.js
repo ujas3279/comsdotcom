@@ -41,9 +41,10 @@ const CustomerOrders = () => {
       
       <Table striped bordered responsive className='table-sm'>
             <thead>
-              <tr>
-                <th className="text-center">NAME</th>
-                <th></th>
+              <tr className="text-center">
+                <th >ID</th>
+                <th>TOTAL</th>
+                <th>STATUS</th>
                 <th></th>
               </tr>
             </thead>
@@ -51,9 +52,11 @@ const CustomerOrders = () => {
               {orders.map((order, index) => {
                 console.log(order)
                 return(
-                <tr key={index}>
-                  <td className="text-center py-4">{order.user.name}</td>
-                  <td className="text-center">
+                <tr className="text-center" key={index}>
+                  <td className="py-4">{order._id}</td>
+                  <td className="py-4">{order.amount}</td>
+                  <td className="py-4">{order.status}</td>
+                  <td>
                   <Link
                     to={`/user/order/detail/${order._id}`}
                   >
