@@ -31,7 +31,7 @@ let famount=0;
   const getFinalAmount = () => {
     let amount = 0;
     products.map(p => {
-      amount = amount + p.price;
+      amount = amount + (p.price*p.count);
     });
     famount=amount;
     return amount;

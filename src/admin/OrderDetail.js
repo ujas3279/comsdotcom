@@ -3,6 +3,8 @@ import Base from '../core/Base';
 import { getOrder } from './helper/adminapicall';
 
 import Card from '../core/Card';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,7 +34,7 @@ const OrderDetail = ({match}) => {
     
     const preload = (orderId) => {
         getOrder(orderId).then(data=>{
-            //console.log(data[0]);
+            console.log(data[0]);
             
 
             if(data.error)
@@ -62,6 +64,9 @@ const OrderDetail = ({match}) => {
 
     return (
         <>
+        <Link className='btn btn-light my-3' to={`/admin/dashboard`}>
+        go back
+      </Link>
             <div className=" mr-5 col-12" ><span className="color-black">Name of user:</span> {User_name}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order Status:  </span> {status}</div>
             <div className=" mr-5 col-12" ><span className="color-black">Order amount:</span> {amount}</div>
