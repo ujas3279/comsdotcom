@@ -18,7 +18,6 @@ const Pcard = ({
     const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
     
-    
   
     const cartTitle = product ? product.name : "A photo from pexels";
     const cartDescrption = product ? product.description : "Default description";
@@ -99,7 +98,8 @@ const Pcard = ({
                 Remove from cart
             </Button>
           )}
-          
+         {removeFromCart && (<h5>Quantity : {product.count}</h5>
+                         )}       
         </Card.Body>
       </Card>
     );
