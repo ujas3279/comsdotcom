@@ -106,8 +106,11 @@ const CustomerOrderDetail = ({match}) => {
                             {product.name}
                           </Link>
                         </Col>
-                        <Col md={4}>
-                        <i class="fa fa-inr"></i>{amount}
+                        <Col>
+                          ${product.price}
+                        </Col>
+                        <Col>
+                        Quantity : {product.count}
                         </Col>
                       </Row>
                     </ListGroup.Item>
