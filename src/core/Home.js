@@ -7,6 +7,7 @@ import { getProducts } from "./helper/coreapicalls";
 import { Row, Col } from 'react-bootstrap'
 import Menu from "./Menu";
 import { Carousel, Image } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 export default function Home() {
 

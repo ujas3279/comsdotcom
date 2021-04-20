@@ -70,13 +70,13 @@ const UpdateOrderStatus = ({match}) => {
 
     const successMessage = () => {
         if(success){
-            return <h4 className="text-success">Order status updated successfuly</h4>
+            return <h5 className="alert alert-success mt-3">Order status updated successfully</h5>
         }
     };
     
     const warningMessage = () => {
         if(error){
-            return <h4 className="text-success">Failed to update order status</h4>
+            return <h5 className="alert alert-danger mt-3">Failed to update order status</h5>
         }
     };
 

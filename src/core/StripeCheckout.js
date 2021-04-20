@@ -95,7 +95,7 @@ let famount=0;
         stripeKey = {process.env.REACT_APP_PUB_KEY}
         token={makePayment}
         amount={getFinalAmount() * 100}
-        name="Buy Tshirts"
+        name="HandsCraft"
         currency="inr"
         shippingAddress
       >

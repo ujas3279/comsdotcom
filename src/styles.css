@@ -18,6 +18,14 @@ footer {
   left: 0px;
 }*/
 
+name{
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 main {
   min-height: 80vh;
 }

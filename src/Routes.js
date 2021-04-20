@@ -21,8 +21,9 @@ import Setting from "./customer/Setting";
 import CustomerOrders from "./customer/CustomerOrders"
 import Menu from "./core/Menu";
 import Footer from './core/Footer'
-import { Container} from 'react-bootstrap'
+import { Container} from 'react-bootstrap;
 import CustomerOrderDetail from "./customer/CustomerOrderDetail";
+import ProductDetail from "./core/ProductDetail";
 
 
 const Routes = () => {
@@ -36,6 +37,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/cart" exact component={Cart} />
+        <Route path="/product/:productId" exact component={ProductDetail}/>
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard}/>
         <PrivateRoute path="/user/setting" exact component={Setting}/>
         <PrivateRoute path="/user/orders/:userId" exact component={CustomerOrders}/>

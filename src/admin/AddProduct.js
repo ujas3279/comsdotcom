@@ -85,13 +85,13 @@ const AddProduct = () => {
       className="alert alert-success mt-3"
       style={{ display: createdProduct ? "" : "none" }}
     >
-      <h4>{createdProduct} created successfully</h4>
+      <h5>{createdProduct} created successfully</h5>
     </div>
   );
 
   const warningMessage = () => {
     if(error){
-        return <h4 className="text-success">Failed to create category</h4>
+        return <h5 className="alert alert-danger mt-3">Failed to create category</h5>
     }
   };
   const createProductForm = () => (
@@ -100,7 +100,8 @@ const AddProduct = () => {
         
           <Form>
             
-
+          {successMessage()}
+            {warningMessage()}
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -167,7 +168,7 @@ const AddProduct = () => {
           ></Form.File>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button type='submit' onClick={onSubmit} variant='primary'>
               Create Product
             </Button>
           </Form>
@@ -180,8 +181,6 @@ const AddProduct = () => {
       <Link to="/admin/dashboard" className='btn btn-light my-3'>
         go back
       </Link>
-          {successMessage()}
-          {warningMessage()}
           {createProductForm()}
        
     </>

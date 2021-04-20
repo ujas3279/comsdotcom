@@ -112,104 +112,103 @@ const UpdateProduct = ({match}) => {
       className="alert alert-success mt-3"
       style={{ display: createdProduct ? "" : "none" }}
     >
-      <h4>{createdProduct} updated successfully</h4>
+      <h5>{createdProduct} updated successfully</h5>
     </div>
   );
 
   const warningMessage = () => {
     if(error){
-        return <h4 className="text-success">Failed to create category</h4>
+        return <h5 className="alert alert-danger mt-3">Failed to create category</h5>
     }
   };
   const createProductForm = () => (
     
-      <FormContainer>
-        <h1>Edit Product</h1>
+    <FormContainer>
+    <h1>Update Product</h1>
+    
+      <Form>
         
-          <Form>
-          
+      {successMessage()}
+        {warningMessage()}
+        <Form.Group controlId='name'>
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Name'
+            value={name}
+            onChange={handleChange("name")}
+          ></Form.Control>
+        </Form.Group>
 
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Name'
-                value={name}
-                onChange={handleChange("name")}
-              ></Form.Control>
-            </Form.Group>
+        <Form.Group controlId='description'>
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Description'
+            value={description}
+            onChange={handleChange("description")}
+          ></Form.Control>
+        </Form.Group>
 
-            <Form.Group controlId='description'>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Description'
-                value={description}
-                onChange={handleChange("description")}
-              ></Form.Control>
-            </Form.Group>
+        <Form.Group controlId='price'>
+          <Form.Label>Price</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Enter price'
+            value={price}
+            onChange={handleChange("price")}
+          ></Form.Control>
+        </Form.Group>
 
-            <Form.Group controlId='price'>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type='number'
-                placeholder='Enter price'
-                value={price}
-                onChange={handleChange("price")}
-              ></Form.Control>
-            </Form.Group>
-
-            
-
-            <Form.Group controlId='category'>
-              <Form.Label>Category</Form.Label>
-              <Form.Control as="select" onChange={handleChange("category")}>
-                <option>Select</option>
-                {categories &&
-                  categories.map((cate, index) => (
-                    <option key={index} value={cate._id}>
-                      {cate.name}
-                    </option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='stock'>
-              <Form.Label>Stock</Form.Label>
-              <Form.Control
-                type='number'
-                placeholder='Stock'
-                value={stock}
-                onChange={handleChange("stock")}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId='photo'>
-              <Form.Label>Image</Form.Label>
-              <Form.File
-            onChange={handleChange("photo")}
-            type="file"
-            name="photo"
-            accept="image"
-            
-          ></Form.File>
-            </Form.Group>
-
-            <Button type='submit' variant='primary'>
-              Update
-            </Button>
-          </Form>
         
-      </FormContainer>
+
+        <Form.Group controlId='category'>
+          <Form.Label>Category</Form.Label>
+          <Form.Control as="select" onChange={handleChange("category")}>
+            <option>Select</option>
+            {categories &&
+              categories.map((cate, index) => (
+                <option key={index} value={cate._id}>
+                  {cate.name}
+                </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='stock'>
+          <Form.Label>Stock</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Stock'
+            value={stock}
+            onChange={handleChange("stock")}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='photo'>
+          <Form.Label>Image</Form.Label>
+          <Form.File
+        onChange={handleChange("photo")}
+        type="file"
+        name="photo"
+        accept="image"
+        
+      ></Form.File>
+        </Form.Group>
+
+        <Button type='submit' onClick={onSubmit} variant='primary'>
+          Update
+        </Button>
+      </Form>
+    
+  </FormContainer>
   );
 
   return (
     <>
-      <Link to='/admin/dashboard' className='btn btn-light my-3'>
+      <Link to='/admin/products' className='btn btn-light my-3'>
         Go Back
       </Link>
-          {successMessage()}
-          {warningMessage()}
           {createProductForm()}
        
     </>
