@@ -8,7 +8,7 @@ import { Row, Col } from 'react-bootstrap'
 const UserDashBoard = () => {
 
     const {
-        user: { name, email}
+        user: { _id,name, email}
       } = isAutheticated();
 
     const adminLeftSide = () => {
@@ -17,7 +17,7 @@ const UserDashBoard = () => {
             <h4 className="card-header text-center bg-dark text-white">User Navigation</h4>
             <ul className="list-group">
               <li className="list-group-item">
-                <Link to="/user/orders" className="nav-link text-center">
+                <Link to={`/user/orders/${_id}`} className="nav-link text-center">
                   Your Orders
                 </Link>
               </li>

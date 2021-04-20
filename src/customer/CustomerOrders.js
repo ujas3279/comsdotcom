@@ -2,27 +2,30 @@ import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
 import Base from '../core/Base';
-import { getOrders} from "./helper/adminapicall"
+import { getOrder} from "../user/helper/userapicalls"
 import { Row, Col, Table, Button } from 'react-bootstrap';
+import { API } from '../backend';
 
-const ManageOrders = () => {
+const CustomerOrders = () => {
 
     const [orders, setOrders] = useState([]);
 
     const {user,token} = isAutheticated();
-
+    const AllOrder=[];
     const preload = () => {
-        getOrders(user._id,token).then(data => {
+        getOrder(user._id,token).then(data => {
             if(data.error){
                 console.log(data.error);
             }
             else{
-              console.log(data)
-                setOrders(data);
+              setOrders(data)
+                
             }
         })
+        
+        
     }
-
+    console.log(orders)
     useEffect(() => {
         preload();
     }, [])
@@ -32,7 +35,7 @@ const ManageOrders = () => {
     return (
         <>
       <h2 className="mb-4 text-center">Orders</h2>
-      <Link className='btn btn-light my-3' to={`/admin/dashboard`}>
+      <Link className='btn btn-light my-3' to={`/user/dashboard`}>
         go back
       </Link>
       
@@ -46,22 +49,18 @@ const ManageOrders = () => {
             </thead>
             <tbody>
               {orders.map((order, index) => {
+                console.log(order)
                 return(
                 <tr key={index}>
                   <td className="text-center py-4">{order.user.name}</td>
                   <td className="text-center">
                   <Link
-                    to={`/admin/order/detail/${order._id}`}
+                    to={`/user/order/detail/${order._id}`}
                   >
                   <Button className="brn-sm">Order detail</Button>
                 </Link>
                   </td>
-                <td className="text-center">
-                  <Link
-                  to={`/admin/orderstatus/update/${order._id}`}>
-                    <Button className="brn-sm">Update Status</Button>
-                  </Link>
-                  </td>
+                
                   </tr>
                 )
               })}
@@ -73,4 +72,4 @@ const ManageOrders = () => {
     )
 }
 
-export default ManageOrders;
+export default CustomerOrders;
