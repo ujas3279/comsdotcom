@@ -5,17 +5,34 @@ import Base from '../core/Base';
 import { getOrder,updateStatus } from './helper/adminapicall';
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../user/helper/FormContainer'
-
+import * as emailjs from "emailjs-com";
+import {success_message,status_message} from "../backend";
 
 const UpdateOrderStatus = ({match}) => {
 
     const [status, setStatus] = useState("");
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [useremail, setUseremail] = useState("");
+    const [username, setUsername] = useState("");
 
-    const allStatus=["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"];
+    const allStatus=["Cancelled", "Delivered", "Shipped", "Processing"];
     const {user,token} = isAutheticated();
-
+    const SendEmail=  (email,name)=>{
+ 
+        emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLET_ID, {
+            to_email:email,
+            to_name:name,
+            status_message:status_message,
+            status:status,
+            success:success_message
+        },process.env.REACT_APP_USER_ID)
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          })
+        };
     const preload = (orderId) => {
         getOrder(orderId).then(data=>{
             
@@ -25,7 +42,10 @@ const UpdateOrderStatus = ({match}) => {
             }
             else
             {
-                setStatus(data.status);
+                const order=data[0];
+                setStatus(order.status);
+                setUseremail(order.user.email);
+                setUsername(order.user.name);
             }
         })
     }
@@ -63,6 +83,7 @@ const UpdateOrderStatus = ({match}) => {
                     setError(error);
             }
             else{
+                SendEmail(useremail,username)
                 setError("");
                 setSuccess(true);
                 setStatus("");
@@ -92,7 +113,7 @@ const UpdateOrderStatus = ({match}) => {
               <Form.Control as= "select"
                 onChange={handleChange}
               >
-                  <option>Select</option>
+                  <option>{status}</option>
                   {allStatus &&
                     allStatus.map((stat, index) => (
                     <option key={index} >
