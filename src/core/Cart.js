@@ -61,6 +61,7 @@ const Cart = () => {
                   <Form.Group controlId='count'>
                     <Form.Control
                       as='select'
+                      value={product.count}
                       onChange={handleChange("count",product)}  
                     >
                       <option>{product.count}</option>

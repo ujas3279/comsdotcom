@@ -1,5 +1,6 @@
 export const addItemToCart = (item,count1, next) => {
     let cart = [];
+    let temp=0;
     let count=count1;
     if (typeof window !== undefined) {
       if (localStorage.getItem("cart")) {
@@ -12,11 +13,12 @@ export const addItemToCart = (item,count1, next) => {
           count++;
         }
           cart.splice(i, 1);
+          temp=i;
         }
       });
       if(count==0)
       {count=1;}
-      cart.push({
+      cart.splice(temp,0,{
         ...item,
         count: count
       });
