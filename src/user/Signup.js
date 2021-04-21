@@ -79,7 +79,7 @@ const Signup = () => {
       .catch(console.log("Error in signup"));
     }
     else{
-      setValues({ ...values, error: "password must be contain spacial character, small and capital latter and number ", success: false });
+      setValues({ ...values, error: "password must be contain special character, small and capital letter and number ", success: false });
     }
   };
 
