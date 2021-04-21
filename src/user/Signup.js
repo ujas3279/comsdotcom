@@ -5,6 +5,7 @@ import { signup } from "../auth/helper";
 import * as emailjs from "emailjs-com";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from './helper/FormContainer'
+import {wel_message1} from '../backend';
 require('dotenv').config();
 
 const Signup = () => {
@@ -34,7 +35,8 @@ const Signup = () => {
  
     emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLET_ID, {
         to_email:email,
-        to_name:name
+        to_name:name,
+        message1:wel_message1
     },process.env.REACT_APP_USER_ID)
       .then((result) => {
           console.log(result.text);
