@@ -27,6 +27,8 @@ const Cart = () => {
     }
   };
 
+  
+
   const n = 8
 
   return (
@@ -52,13 +54,12 @@ const Cart = () => {
                   <Col md={3}>
                     <Link to={`/product/${product._id}`}>{product.name}</Link>
                   </Col>
-                  <Col md={2}>${product.price}</Col>
+                  <Col md={2}><i class="fa fa-inr"></i>{product.price}</Col>
 
                   <Col md={3}>
                     <Form.Control
                       as='select'
                       value={products.stock}
-                      
                     >
                       <option>Select</option>
                       {[...Array(product.stock)].map((elementInArray,i) => (
