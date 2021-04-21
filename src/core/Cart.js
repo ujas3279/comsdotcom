@@ -30,10 +30,6 @@ const Cart = () => {
     }
   };
 
-  
-
-  const n = 8
-
   return (
     <>
     <h1>Shopping Cart</h1>
@@ -64,6 +60,7 @@ const Cart = () => {
                     <Form.Control
                       as='select'
                       onChange={handleChange("count",product)}  
+                      value={product.count}
                     >
                       <option>{product.count}</option>
                       {[...Array(product.stock)].map((elementInArray,i) => (
