@@ -7,9 +7,8 @@ import { isAutheticated } from '../auth/helper';
 const Setting = () => {
 
     const {
-        user: { name, email}
+        user: {_id, name, email}
       } = isAutheticated();
-
     const adminLeftSide = () => {
         return (
           <div className="card">
@@ -21,7 +20,7 @@ const Setting = () => {
                 </Link>
               </li>
               <li className="list-group-item">
-                <Link to="/" className="nav-link text-success">
+                <Link to={`/user/setting/changepassword/${_id}`} className="nav-link text-success">
                   Change Password
                 </Link>
               </li>

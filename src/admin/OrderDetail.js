@@ -83,7 +83,7 @@ const OrderDetail = ({match}) => {
                 <strong>Name: </strong> {name}
               </p>
               <p>
-                <strong>Email: </strong>{' '} {email}
+                <strong>Email: </strong>{' '}{email}
               </p>
               <p>
                 <strong>Address:</strong>
@@ -133,7 +133,7 @@ const OrderDetail = ({match}) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${amount}</Col>
+                  <Col><i class="fa fa-inr"></i>{amount}</Col>
                 </Row>
               </ListGroup.Item>
               

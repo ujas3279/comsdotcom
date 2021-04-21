@@ -27,6 +27,8 @@ const Cart = () => {
     }
   };
 
+  const n = 8
+
   return (
     <>
     <h1>Shopping Cart</h1>
@@ -51,24 +53,21 @@ const Cart = () => {
                     <Link to={`/product/${product._id}`}>{product.name}</Link>
                   </Col>
                   <Col md={2}>${product.price}</Col>
-                  
-                  <Col md={1}>
-                    <Button className="fa fa-minus fa-inverse fa-2x"></Button>
-                    
-                  </Col>
 
-                  <Col md={1}>
-                  <Button className="fa fa-plus fa-inverse fa-2x"></Button>
-                  </Col>
-
-                  <Col md={1}>
-                  <Form.Group controlId='price'>
-          <Form.Label>Price</Form.Label>
-          <Form.Control
-            type='number'
-            placeholder='Enter price'
-          ></Form.Control>
-        </Form.Group>
+                  <Col md={3}>
+                    <Form.Control
+                      as='select'
+                      value={products.stock}
+                      
+                    >
+                      <option>Select</option>
+                      {[...Array(product.stock)].map((elementInArray,i) => (
+                        <option key={i} >
+                        {i+1}
+                      </option>
+                      ))}
+                      
+                    </Form.Control>
                   </Col>
 
                   <Col md={2}>
