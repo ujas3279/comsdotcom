@@ -79,11 +79,11 @@ let famount=0;
        
         
         cartEmpty(()=>{
-
+            
         })
+        setReload(!reload);
         createOrder(userId, usertoken, orderData);
         SendEmail(maildata);
-        setReload(!reload);
         console.log(response.status);
       })
       .catch(error => console.log(error));

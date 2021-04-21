@@ -4,7 +4,7 @@ import { isAutheticated } from '../auth/helper';
 import Base from '../core/Base';
 import {deleteProduct, getProducts} from "./helper/adminapicall"
 import { Row, Col, Table, Button } from 'react-bootstrap';
-
+import ImageHepler from '../core/helper/ImageHepler';
 const ManageProducts = () => {
 
     const [products, setProducts] = useState([]);
@@ -47,6 +47,7 @@ const ManageProducts = () => {
       <Table striped bordered responsive className='table-sm'>
             <thead>
               <tr>
+                <th className="text-centre">PHOTO</th>
                 <th className="text-center">NAME</th>
                 <th></th>
                 <th></th>
@@ -56,6 +57,7 @@ const ManageProducts = () => {
           {products.map((product, index) => {
               return(
                 <tr key={index}>
+                  <td><Col md={2}><ImageHepler product={product} /></Col></td>
                   <td className="text-center py-4">{product.name}</td>
                   <td className="text-center">
                   <Link
