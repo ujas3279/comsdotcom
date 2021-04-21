@@ -12,7 +12,6 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
   useEffect(() => {
     setProducts(loadCart());
   }, [reload]);  
@@ -20,7 +19,11 @@ const Cart = () => {
   const addToCart = () => {
     addItemToCart(products, () => setRedirect(true));
   };
-
+  const handleChange = (name,product) => event => {
+    const value =  event.target.value;
+    addItemToCart(product,value, () => setRedirect(true));
+    setReload(!reload)
+  };
   const getARedirect = redirect => {
     if (redirect) {
       return <Redirect to="/cart" />;
@@ -55,12 +58,12 @@ const Cart = () => {
                   <Col md={2}>${product.price}</Col>
 
                   <Col md={3}>
+                  <Form.Group controlId='count'>
                     <Form.Control
                       as='select'
-                      value={products.stock}
-                      
+                      onChange={handleChange("count",product)}  
                     >
-                      <option>Select</option>
+                      <option>{product.count}</option>
                       {[...Array(product.stock)].map((elementInArray,i) => (
                         <option key={i} >
                         {i+1}
@@ -68,6 +71,7 @@ const Cart = () => {
                       ))}
                       
                     </Form.Control>
+                    </Form.Group>
                   </Col>
 
                   <Col md={2}>
