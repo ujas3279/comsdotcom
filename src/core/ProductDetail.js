@@ -75,7 +75,7 @@ return (
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong><i class="fa fa-inr"></i>{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>

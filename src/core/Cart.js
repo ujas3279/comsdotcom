@@ -30,8 +30,6 @@ const Cart = () => {
     }
   };
 
-  const n = 8
-
   return (
     <>
     <h1>Shopping Cart</h1>
@@ -55,7 +53,7 @@ const Cart = () => {
                   <Col md={3}>
                     <Link to={`/product/${product._id}`}>{product.name}</Link>
                   </Col>
-                  <Col md={2}>${product.price}</Col>
+                  <Col md={2}><i class="fa fa-inr"></i>{product.price}</Col>
 
                   <Col md={3}>
                   <Form.Group controlId='count'>
@@ -63,6 +61,7 @@ const Cart = () => {
                       as='select'
                       value={product.count}
                       onChange={handleChange("count",product)}  
+                      value={product.count}
                     >
                       <option>{product.count}</option>
                       {[...Array(product.stock)].map((elementInArray,i) => (
