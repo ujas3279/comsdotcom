@@ -37,7 +37,7 @@ useEffect(() => {
   }, []);
 
   const addToCart = () => {
-    addItemToCart(product,1, () => setRedirect(true));
+    addItemToCart(product,0, () => setRedirect(true));
   };
 
   const getARedirect = redirect => {
