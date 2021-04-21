@@ -24,7 +24,7 @@ const Pcard = ({
     const cartPrice = product ? product.price : "DEFAULT";
   
     const addToCart = () => {
-      addItemToCart(product, () => setRedirect(true));
+      addItemToCart(product,1, () => setRedirect(true));
     };
   
     const getARedirect = redirect => {
