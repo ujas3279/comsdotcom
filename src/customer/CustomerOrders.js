@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { isAutheticated } from '../auth/helper';
+import { isAutheticated } from "../auth/helper";
 import Base from '../core/Base';
 import { getOrder} from "../user/helper/userapicalls"
 import { Row, Col, Table, Button } from 'react-bootstrap';
@@ -21,7 +21,7 @@ const CustomerOrders = () => {
               setOrders(data)
                 
             }
-        })
+        }).catch(err=>{})
         
         
     }
@@ -35,7 +35,7 @@ const CustomerOrders = () => {
     return (
         <>
       <h2 className="mb-4 text-center">Orders</h2>
-      <Link className='btn btn-dark my-3' to={`/user/dashboard`}>
+      <Link className='btn btn-outline-dark my-3' to={`/user/dashboard`}>
         go back
       </Link>
       

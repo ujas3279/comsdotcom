@@ -24,12 +24,6 @@ const Setting = () => {
                   Change Password
                 </Link>
               </li>
-              <li className="list-group-item">
-                <Link to="/" className="nav-link text-success">
-                  Change Name
-                </Link>
-              </li>
-              
             </ul>
           </div>
         );

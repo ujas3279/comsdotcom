@@ -37,9 +37,9 @@ import { authenticate } from "../auth/helper";
       const errorMessage = () => {
         return (
           <div className="row">
-            <div className="col-md-6 offset-sm-3 text-left">
+            <div className="col-md-6 offset-sm-3 text-left pt-3">
               <div
-                className="alert alert-danger"
+                className="alert alert-danger "
                 style={{ display: error ? "" : "none" }}
               >
                 {error}
@@ -52,9 +52,9 @@ import { authenticate } from "../auth/helper";
       const successMessage = () => {
         return (
           <div className="row">
-            <div className="col-md-6 offset-sm-3 text-left">
+            <div className="col-mt-6 offset-sm-3 text-left pt-3">
               <div
-                className="alert alert-success"
+                className="alert alert-success "
                 style={{ display: success ? "" : "none" }}
               >
                 Password Change request send to your register mail account

@@ -59,7 +59,7 @@ const UpdateOrderStatus = ({match}) => {
 
     const goBack= () => (
         <div >
-            <Link className='btn btn-dark my-3' to="/admin/dashboard">
+            <Link className='btn btn-outline-dark my-3' to="/admin/dashboard">
             go back
             </Link>
 
