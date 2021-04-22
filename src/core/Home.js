@@ -7,7 +7,7 @@ import { Row, Col,Form } from 'react-bootstrap'
 import Menu from "./Menu";
 import { Carousel, Image } from 'react-bootstrap'
 import { Link } from "react-router-dom";
-
+import FormContainer from "../user/helper/FormContainer"
 export default function Home() {
 
   const [products, setProducts] = useState([])
@@ -36,13 +36,15 @@ export default function Home() {
 
   return (
     <>
-      <Form.Group controlId='search'>
-              <Form.Label>Search</Form.Label>
-              <Form.Control
+    
+      
+      <Form.Group controlId='search' className="search">
+              <Form.Control 
                 type='name'
-                placeholder='Search Product'
+                placeholder='&#xF002;   Search Products'
                 value={search}
                 onChange={handleChange}
+                className='searchbox'
               ></Form.Control>
       </Form.Group>
       {(search=="") && (<h1>Latest Products</h1>)}
