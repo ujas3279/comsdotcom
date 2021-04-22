@@ -18,6 +18,10 @@ footer {
   left: 0px;
 }*/
 
+.search {
+  float:right
+      
+}
 name{
   display: inline-block;
   max-width: 100%;

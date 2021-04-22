@@ -15,7 +15,7 @@ const currentTab = (history, path) => {
 
 const Menu = ({ history }) => (
   <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar className="py-2" bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer style={currentTab(history, "/")} to='/'>
             <Navbar.Brand>comsdotcom</Navbar.Brand>
