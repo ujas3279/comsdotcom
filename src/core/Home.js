@@ -41,10 +41,10 @@ export default function Home() {
       <Form.Group controlId='search' className="search">
               <Form.Control 
                 type='name'
-                placeholder='Search Product'
+                placeholder='&#xF002;   Search Products'
                 value={search}
                 onChange={handleChange}
-                className='mr-sm-2 ml-sm-5'
+                className='searchbox'
               ></Form.Control>
       </Form.Group>
     
