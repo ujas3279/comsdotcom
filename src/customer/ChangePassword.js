@@ -5,7 +5,7 @@ import { isAutheticated, signup } from "../auth/helper";
 import * as emailjs from "emailjs-com";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../user/helper/FormContainer'
-import { updatePassword } from "../user/helper/userapicalls";
+import { changePassword } from "../user/helper/userapicalls";
 require('dotenv').config();
 
 
@@ -43,7 +43,7 @@ const ChangePassword = () => {
     
     else if(new RegExp(/[0-9]/).test(password) && new RegExp(/[a-z]/).test(password) && new RegExp(/[A-Z]/).test(password) && new RegExp(/[!#@$%^&*)(+=._-]/).test(password))
     {
-      updatePassword(user._id,token,{password})
+      changePassword(user._id,token,{password})
       .then(data => {
           console.log(data)
         if (false) {

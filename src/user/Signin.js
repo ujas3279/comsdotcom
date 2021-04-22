@@ -38,7 +38,7 @@ const Signin = () => {
           });
         }
       })
-      .catch(console.log("signin request failed"));
+    .catch(console.log("signin request failed"));
   };
 
   const performRedirect = () => {
@@ -115,6 +115,11 @@ const Signin = () => {
           New Customer?{' '}
           <Link to="/signup">
             Signup
+          </Link>
+        </Col>
+        <Col>
+          <Link to="/forgotpassword">
+            Forgot password?
           </Link>
         </Col>
       </Row>
