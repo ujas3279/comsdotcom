@@ -1,19 +1,26 @@
-export const addItemToCart = (item, next) => {
+export const addItemToCart = (item,count1, next) => {
     let cart = [];
-    let count=0;
+    let temp=0;
+    let count=count1;
     if (typeof window !== undefined) {
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
       }
       cart.map((product, i) => {
-        if (product._id === item._id) {
-          count=product.count;
+        if (product._id === item._id ) {
+          if(count==0){
+          count=product.count
+          count++;
+        }
           cart.splice(i, 1);
+          temp=i;
         }
       });
-      cart.push({
+      if(count==0)
+      {count=1;}
+      cart.splice(temp,0,{
         ...item,
-        count: count+1
+        count: count
       });
       localStorage.setItem("cart", JSON.stringify(cart));
       next();

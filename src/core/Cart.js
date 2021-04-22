@@ -12,7 +12,6 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
   useEffect(() => {
     setProducts(loadCart());
   }, [reload]);  
@@ -20,7 +19,11 @@ const Cart = () => {
   const addToCart = () => {
     addItemToCart(products, () => setRedirect(true));
   };
-
+  const handleChange = (name,product) => event => {
+    const value =  event.target.value;
+    addItemToCart(product,value, () => setRedirect(true));
+    setReload(!reload)
+  };
   const getARedirect = redirect => {
     if (redirect) {
       return <Redirect to="/cart" />;
@@ -50,25 +53,25 @@ const Cart = () => {
                   <Col md={3}>
                     <Link to={`/product/${product._id}`}>{product.name}</Link>
                   </Col>
-                  <Col md={2}>${product.price}</Col>
-                  
-                  <Col md={1}>
-                    <Button className="fa fa-minus fa-inverse fa-2x"></Button>
-                    
-                  </Col>
+                  <Col md={2}><i class="fa fa-inr"></i>{product.price}</Col>
 
-                  <Col md={1}>
-                  <Button className="fa fa-plus fa-inverse fa-2x"></Button>
-                  </Col>
-
-                  <Col md={1}>
-                  <Form.Group controlId='price'>
-          <Form.Label>Price</Form.Label>
-          <Form.Control
-            type='number'
-            placeholder='Enter price'
-          ></Form.Control>
-        </Form.Group>
+                  <Col md={3}>
+                  <Form.Group controlId='count'>
+                    <Form.Control
+                      as='select'
+                      value={product.count}
+                      onChange={handleChange("count",product)}  
+                      value={product.count}
+                    >
+                      <option>{product.count}</option>
+                      {[...Array(product.stock)].map((elementInArray,i) => (
+                        <option key={i} >
+                        {i+1}
+                      </option>
+                      ))}
+                      
+                    </Form.Control>
+                    </Form.Group>
                   </Col>
 
                   <Col md={2}>
