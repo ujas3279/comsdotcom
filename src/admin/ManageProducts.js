@@ -40,7 +40,7 @@ const ManageProducts = () => {
     return (
         <>
       <h2 className="mb-4 text-center">Products</h2>
-      <Link className='btn btn-dark my-3' to={`/admin/dashboard`}>
+      <Link className='btn btn-outline-dark my-3' to={`/admin/dashboard`}>
         go back
       </Link>
       

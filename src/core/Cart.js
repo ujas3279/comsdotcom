@@ -32,9 +32,6 @@ const Cart = () => {
 
   return (
     <>
-    <Link className='btn btn-dark my-3' to='/'>
-        Go Back
-      </Link>
     <h1 className="text-center">Shopping Cart</h1>
     
       <Row>
@@ -44,7 +41,7 @@ const Cart = () => {
         
         {products.length === 0 ? (
           <h4>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            Your cart is empty 
           </h4>
         ) : (
           <ListGroup variant='flush'>
@@ -99,6 +96,9 @@ const Cart = () => {
           <StripeCheckout products={products} setReload={setReload} />
           </Col>
         </Row>
+        <Link className='btn btn-outline-dark my-3' to='/'>
+        Go Back
+      </Link>
         </>
   );
 };

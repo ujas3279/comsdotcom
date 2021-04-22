@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from "react";
-
 import { API } from "../backend";
 import Base from "./Base";
 import Pcard from "./Card";
@@ -22,8 +21,9 @@ export default function Home() {
       }
       else{
         setProducts(data);
+        console.log(data);
       }
-    })
+    }).catch(err=>{})
   }
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -47,8 +47,7 @@ export default function Home() {
                 className='searchbox'
               ></Form.Control>
       </Form.Group>
-    
-      <h1>Latest Products</h1>
+      {(search=="") && (<h1>Latest Products</h1>)}
       <Row>
           {products.map((product, index) => (
             product.name.toLowerCase().match(`${search}`) && (<Col key={index} sm={12} md={6} lg={4} xl={3}>

@@ -41,7 +41,7 @@ const UpdateCategory = ({match}) => {
 
     const goBack= () => (
         <div >
-            <Link className='btn btn-dark my-3' to="/admin/categories">
+            <Link className='btn btn-outline-dark my-3' to="/admin/categories">
             go back
             </Link>
 

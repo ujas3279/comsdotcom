@@ -178,7 +178,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <Link to="/admin/dashboard" className='btn btn-dark my-3'>
+      <Link to="/admin/dashboard" className='btn btn-outline-dark my-3'>
         go back
       </Link>
           {createProductForm()}
