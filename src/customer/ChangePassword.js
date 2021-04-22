@@ -142,6 +142,7 @@ const ChangePassword = () => {
 
   return (
     <>
+    
       {successMessage()}
       {errorMessage()}
       {changePasswordForm()}
