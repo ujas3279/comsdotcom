@@ -32,7 +32,11 @@ const Cart = () => {
 
   return (
     <>
-    <h1>Shopping Cart</h1>
+    <Link className='btn btn-dark my-3' to='/'>
+        Go Back
+      </Link>
+    <h1 className="text-center">Shopping Cart</h1>
+    
       <Row>
       {getARedirect(redirect)}
       

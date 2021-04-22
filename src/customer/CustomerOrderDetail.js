@@ -138,7 +138,7 @@ const CustomerOrderDetail = ({match}) => {
           </Card>
         </Col>
       </Row>
-      <Link className='btn btn-light my-3' to={`/user/dashboard`}>
+      <Link className='btn btn-dark my-3' to={`/user/dashboard`}>
         go back
       </Link>
 

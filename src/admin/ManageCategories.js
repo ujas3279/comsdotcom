@@ -40,7 +40,7 @@ const ManageCategories = () => {
     return (
         <>
       <h2 className="mb-4 text-center">Categories</h2>
-      <Link className='btn btn-light my-3' to={`/admin/dashboard`}>
+      <Link className='btn btn-dark my-3' to={`/admin/dashboard`}>
         go back
       </Link>
 

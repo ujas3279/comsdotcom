@@ -37,7 +37,7 @@ useEffect(() => {
   }, []);
 
   const addToCart = () => {
-    addItemToCart(product,1, () => setRedirect(true));
+    addItemToCart(product,0, () => setRedirect(true));
   };
 
   const getARedirect = redirect => {
@@ -47,7 +47,7 @@ useEffect(() => {
   };
 return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn btn-dark my-3' to='/'>
         Go Back
       </Link>
       {getARedirect(redirect)}
