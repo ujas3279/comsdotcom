@@ -25,6 +25,8 @@ import { Container} from 'react-bootstrap';
 import CustomerOrderDetail from "./customer/CustomerOrderDetail";
 import ProductDetail from "./core/ProductDetail";
 import ChangePassword from "./customer/ChangePassword";
+import ForgotPassword from "./user/ForgotPassword";
+import UpdatePasswordWithMail from "./user/UpdatePasswordWithMail";
 
 
 const Routes = () => {
@@ -37,6 +39,8 @@ const Routes = () => {
         <Route path="/" exact component={Home} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
+        <Route path="/forgotpassword" exact component={ForgotPassword} />
+        <Route path="/forgotpassword/:userId" exact component={UpdatePasswordWithMail} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/product/:productId" exact component={ProductDetail}/>
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard}/>

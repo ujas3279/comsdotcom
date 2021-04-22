@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
-import { signup } from "../auth/helper";
-import * as emailjs from "emailjs-com";
+import { isAutheticated } from "../auth/helper";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from './helper/FormContainer'
+import { changePassword } from "./helper/userapicalls";
 require('dotenv').config();
 
-const Signup = () => {
+
+const UpdatePasswordWithMail = () => {
 
   const strength=undefined;
   const color=undefined;
+  const {user,token}=isAutheticated();
 
   const [values, setValues] = useState({
-    name: "",
-    email: "",
     password: "",
     confirm_password:"",
     error: "",
     success: false,
-    didRedirect: false
+    didRedirect: false,
+    formData: ""
   });
 
-  const { name, email, password,confirm_password, error, success, didRedirect } = values;
+  const {password,confirm_password, error, success, didRedirect,formData } = values;
 
   const handleChange = name => event => {
 
@@ -30,19 +30,7 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const SendEmail=  (email,name)=>{
  
-    emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLET_ID, {
-        to_email:email,
-        to_name:name
-    },process.env.REACT_APP_USER_ID)
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      })
-    };
-
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
@@ -50,23 +38,17 @@ const Signup = () => {
     {
       setValues({ ...values, error: "password and confirm password not match", success: false });
     }
-    else if(!new RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$").test(email))
-    {
-      setValues({ ...values, error: "email is not valid", success: false });
-    }
+    
     else if(new RegExp(/[0-9]/).test(password) && new RegExp(/[a-z]/).test(password) && new RegExp(/[A-Z]/).test(password) && new RegExp(/[!#@$%^&*)(+=._-]/).test(password))
     {
-      signup({ name, email, password })
+      changePassword(user._id,token,{password})
       .then(data => {
-        console.log(data)
-        if (data.error) {
+          console.log(data)
+        if (false) {
           setValues({ ...values, error: data.error, success: false });
         } else {
-          {SendEmail(email,name)};
           setValues({
             ...values,
-            name: "",
-            email: "",
             password: "",
             confirm_password:"",
             error: "",
@@ -75,7 +57,7 @@ const Signup = () => {
           });
         }
       })
-      .catch(console.log("Error in signup"));
+      .catch(console.log("Error in change password"));
     }
     else{
       setValues({ ...values, error: "password must be contain spacial character, small and capital latter and number ", success: false });
@@ -88,33 +70,15 @@ const Signup = () => {
     }
   };
 
-  const signUpForm = () => {
+  const changePasswordForm = () => {
     return (
       <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>Change Password</h1>
       <Form>
-        <Form.Group controlId='name'>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type='name'
-            placeholder='Enter name'
-            value={name}
-            onChange={handleChange("name")}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Enter email'
-            value={email}
-            onChange={handleChange("email")}
-          ></Form.Control>
-        </Form.Group>
+        
 
         <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>New Password</Form.Label>
           <Form.Control
             type='password'
             placeholder='Enter password'
@@ -134,18 +98,11 @@ const Signup = () => {
         </Form.Group>
 
         <Button onClick={onSubmit} type='submit' variant='primary'>
-          Register
+          Change
         </Button>
       </Form>
 
-      <Row className='py-3'>
-        <Col>
-          Have an Account?{' '}
-          <Link to="/signin">
-            Login
-          </Link>
-        </Col>
-      </Row>
+      
     </FormContainer>
     );
   };
@@ -158,7 +115,7 @@ const Signup = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-            Thanks for registering. Please Check your mail to verify account
+            Password Change Succesfully
             
           </div>
         </div>
@@ -185,10 +142,10 @@ const Signup = () => {
     <>
       {successMessage()}
       {errorMessage()}
-      {signUpForm()}
+      {changePasswordForm()}
       {performRedirect()}
     </>
   );
 };
 
-export default Signup;
+export default UpdatePasswordWithMail;
