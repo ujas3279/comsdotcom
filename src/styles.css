@@ -19,8 +19,8 @@ footer {
 }*/
 
 .search {
-  float:right
-      
+  float:right;
+  margin-top: 11px;
 }
 
 .searchbox::-webkit-input-placeholder { 
