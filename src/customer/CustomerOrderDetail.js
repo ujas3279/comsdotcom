@@ -107,7 +107,7 @@ const CustomerOrderDetail = ({match}) => {
                           </Link>
                         </Col>
                         <Col>
-                          ${product.price}
+                        <i class="fa fa-inr"></i>{product.price}
                         </Col>
                         <Col>
                         Quantity : {product.count}

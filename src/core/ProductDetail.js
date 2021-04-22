@@ -37,7 +37,7 @@ useEffect(() => {
   }, []);
 
   const addToCart = () => {
-    addItemToCart(product, () => setRedirect(true));
+    addItemToCart(product,1, () => setRedirect(true));
   };
 
   const getARedirect = redirect => {
@@ -75,7 +75,7 @@ return (
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong><i class="fa fa-inr"></i>{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
