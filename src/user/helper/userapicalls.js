@@ -31,8 +31,8 @@ export const getOrder = (userId,token) => {
   }
 
   //todo
-  export const updatePassword = email => {
-    console.log(email)
+  export const getPasswordLink = email => {
+   
     return fetch(`${API}/user/forgotpassword`, {
       
       method: "POST",
@@ -47,4 +47,23 @@ export const getOrder = (userId,token) => {
       })
       .catch(err => console.log(err));
     
+  }
+
+  export const forgotPassword = (userId,uniquestring,password) => {
+    console.log(userId);
+    console.log(uniquestring);
+    console.log(password);
+    return fetch(`${API}/user/forgotpassword/${userId}/${uniquestring}`, {
+      
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(password)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => console.log(err));
   }

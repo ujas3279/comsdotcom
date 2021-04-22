@@ -3,15 +3,16 @@ import { Link, Redirect } from "react-router-dom";
 import { isAutheticated } from "../auth/helper";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from './helper/FormContainer'
-import { changePassword } from "./helper/userapicalls";
+import { forgotPassword } from "./helper/userapicalls";
 require('dotenv').config();
 
 
-const UpdatePasswordWithMail = () => {
+const UpdatePasswordWithMail = ({match}) => {
+  console.log(match.params.userId);
+  console.log(match.params.uniquestring);
 
   const strength=undefined;
   const color=undefined;
-  const {user,token}=isAutheticated();
 
   const [values, setValues] = useState({
     password: "",
@@ -41,10 +42,10 @@ const UpdatePasswordWithMail = () => {
     
     else if(new RegExp(/[0-9]/).test(password) && new RegExp(/[a-z]/).test(password) && new RegExp(/[A-Z]/).test(password) && new RegExp(/[!#@$%^&*)(+=._-]/).test(password))
     {
-      changePassword(user._id,token,{password})
+      forgotPassword(match.params.userId,match.params.uniquestring,{password})
       .then(data => {
           console.log(data)
-        if (false) {
+        if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {
           setValues({

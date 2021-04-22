@@ -40,7 +40,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/forgotpassword" exact component={ForgotPassword} />
-        <Route path="/forgotpassword/:userId" exact component={UpdatePasswordWithMail} />
+        <Route path="/forgotpassword/:userId/:uniquestring" exact component={UpdatePasswordWithMail} />
         <Route path="/cart" exact component={Cart} />
         <Route path="/product/:productId" exact component={ProductDetail}/>
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard}/>

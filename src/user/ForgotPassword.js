@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormContainer from './helper/FormContainer'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { updatePassword } from "./helper/userapicalls";
+import { getPasswordLink } from "./helper/userapicalls";
 import { authenticate } from "../auth/helper";
 
 
@@ -22,7 +22,7 @@ import { authenticate } from "../auth/helper";
       const onSubmit = event => {
         event.preventDefault();
         setValues({ ...values, error: false });
-        updatePassword({email})
+        getPasswordLink({email})
           .then(data => {
             if (data.error) {
               setValues({ ...values, error: data.error,success:false});
