@@ -18,6 +18,16 @@ footer {
   left: 0px;
 }*/
 
+.search {
+  float:right
+      
+}
+
+.searchbox::-webkit-input-placeholder { 
+  font-family: FontAwesome;
+
+
+  }
 name{
   display: inline-block;
   max-width: 100%;
