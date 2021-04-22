@@ -4,7 +4,7 @@ import { API } from "../backend";
 import Base from "./Base";
 import Pcard from "./Card";
 import { getProducts } from "./helper/coreapicalls";
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col,Form } from 'react-bootstrap'
 import Menu from "./Menu";
 import { Carousel, Image } from 'react-bootstrap'
 import { Link } from "react-router-dom";
@@ -13,7 +13,8 @@ export default function Home() {
 
   const [products, setProducts] = useState([])
   const [error, setError] = useState(false)
-
+  const [search, setSearch] = useState("");
+  const [reload, setReload] = useState(false);
   const loadAllProduct = () => {
     getProducts().then(data => {
       if(data.error){
@@ -24,19 +25,32 @@ export default function Home() {
       }
     })
   }
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+    setReload(!reload);
+};
 
   useEffect(() => {
     loadAllProduct()
-  }, [])
+  }, [reload])
 
   return (
     <>
+      <Form.Group controlId='search'>
+              <Form.Label>Search</Form.Label>
+              <Form.Control
+                type='name'
+                placeholder='Search Product'
+                value={search}
+                onChange={handleChange}
+              ></Form.Control>
+      </Form.Group>
       <h1>Latest Products</h1>
       <Row>
           {products.map((product, index) => (
-            <Col key={index} sm={12} md={6} lg={4} xl={3}>
-              <Pcard product={product} />
-            </Col>
+            product.name.toLowerCase().match(`${search}`) && (<Col key={index} sm={12} md={6} lg={4} xl={3}>
+             <Pcard product={product} />
+            </Col>)
           ))}
       </Row>
     </>
