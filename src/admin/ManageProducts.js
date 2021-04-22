@@ -19,7 +19,7 @@ const ManageProducts = () => {
             else{
                 setProducts(data);
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const ManageProducts = () => {
             else{
                 preload();
             }
-        })
+        }).catch(err=>{})
     }
 
     return (

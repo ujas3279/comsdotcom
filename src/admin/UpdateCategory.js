@@ -25,14 +25,14 @@ const UpdateCategory = ({match}) => {
               setName(data.name)
                
             }
-          });
+          }).catch(err=>{})
     }
     const preloadCategories = ()=>{
         getCategory().then(data=>{
             if(data.error){
                 setError(data.error)
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const UpdateCategory = ({match}) => {
                 setSuccess(true);
                 setName("");
             }
-        })
+        }).catch(err=>{})
     }
 
     const successMessage = () => {

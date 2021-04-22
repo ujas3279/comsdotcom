@@ -46,7 +46,7 @@ const AddCategory = () => {
                 setSuccess(true);
                 setName("");
             }
-        })
+        }).catch(err=>{})
     }
 
     const successMessage = () => {

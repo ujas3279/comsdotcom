@@ -46,7 +46,7 @@ const AddProduct = () => {
       } else {
         setValues({ ...values, categories: data, formData: new FormData() });
       }
-    });
+    }).catch(err=>{})
   };
 
   useEffect(() => {

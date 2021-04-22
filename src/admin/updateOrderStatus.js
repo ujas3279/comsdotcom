@@ -31,7 +31,7 @@ const UpdateOrderStatus = ({match}) => {
               console.log(result.text);
           }, (error) => {
               console.log(error.text);
-          })
+          }).catch(err=>{})
         };
     const preload = (orderId) => {
         getOrder(orderId).then(data=>{
@@ -47,7 +47,7 @@ const UpdateOrderStatus = ({match}) => {
                 setUseremail(order.user.email);
                 setUsername(order.user.name);
             }
-        })
+        }).catch(err=>{})
     }
     const preloadStatus = ()=>{
         

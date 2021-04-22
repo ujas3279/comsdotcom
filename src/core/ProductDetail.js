@@ -29,7 +29,7 @@ const preload = (productId) => {
           setproduct(data)
           console.log(product)
         }
-    })
+    }).catch(err=>{})
 }
 
 useEffect(() => {

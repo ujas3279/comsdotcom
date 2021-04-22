@@ -34,7 +34,7 @@ const ManageCategories = () => {
             else{
                 preload();
             }
-        })
+        }).catch(err=>{})
     }
 
     return (

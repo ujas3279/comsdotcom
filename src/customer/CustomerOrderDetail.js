@@ -59,7 +59,7 @@ const CustomerOrderDetail = ({match}) => {
                     products: order.products
                 })
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {

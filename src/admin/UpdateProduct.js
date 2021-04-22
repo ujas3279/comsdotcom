@@ -58,7 +58,7 @@ const UpdateProduct = ({match}) => {
          });
          
       }
-    });
+    }).catch(err=>{})
   };
 
   const preloadCategories = () => {

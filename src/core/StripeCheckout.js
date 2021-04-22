@@ -75,11 +75,8 @@ let famount=0;
               address:useraddress,
               amount:famount
               
-        }
-       
-        
-        cartEmpty(()=>{
-            
+        }  
+        cartEmpty(()=>{    
         })
         setReload(!reload);
         createOrder(userId, usertoken, orderData);

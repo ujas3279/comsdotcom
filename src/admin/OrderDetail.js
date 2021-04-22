@@ -61,7 +61,7 @@ const OrderDetail = ({match}) => {
                 })
                 console.log(order.user.email)
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {
