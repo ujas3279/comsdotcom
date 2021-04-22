@@ -109,7 +109,12 @@ const Signin = () => {
           Sign In
         </Button>
       </Form>
-
+      <Row className="pt-2"><Col>
+          <Link to="/forgotpassword">
+            Forgot password?
+          </Link>
+          </Col>
+        </Row>
       <Row className='py-3'>
         <Col>
           New Customer?{' '}
@@ -117,11 +122,7 @@ const Signin = () => {
             Signup
           </Link>
         </Col>
-        <Col>
-          <Link to="/forgotpassword">
-            Forgot password?
-          </Link>
-        </Col>
+        
       </Row>
     </FormContainer>
     );
