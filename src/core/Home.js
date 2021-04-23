@@ -26,7 +26,7 @@ export default function Home() {
     }).catch(err=>{})
   }
   const handleChange = (event) => {
-    setSearch(event.target.value);
+    setSearch(event.target.value.toLowerCase());
     setReload(!reload);
 };
 
