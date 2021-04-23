@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
@@ -59,10 +59,7 @@ let famount=0;
       body: JSON.stringify(body)
     })
       .then(response => {
-        console.log(response);
-        console.log(token.card.address_line1);
         let useraddress=token.card.name +","+token.card.address_line1+","+token.card.address_city+","+token.card.address_zip+","+token.card.address_country;
-        console.log(useraddress);
         const orderData={
             products:products,
             transaction_id:token.card.id,
@@ -81,7 +78,6 @@ let famount=0;
         setReload(!reload);
         createOrder(userId, usertoken, orderData);
         SendEmail(maildata);
-        console.log(response.status);
       })
       .catch(error => console.log(error));
   };

@@ -1,8 +1,6 @@
 
 import React,{useState,useEffect} from 'react'
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import Base from './Base';
 import { Redirect } from 'react-router';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import {addItemToCart, removeItemFromCart } from './helper/CartHelper';
@@ -17,9 +15,6 @@ const ProductDetail=({match})=>{
 
 const preload = (productId) => {
     getProductsById(productId).then(data=>{
-        console.log(data);
-        
-
         if(data.error)
         {
             seterror(data.error)
@@ -27,7 +22,6 @@ const preload = (productId) => {
         else
         {
           setproduct(data)
-          console.log(product)
         }
     }).catch(err=>{})
 }

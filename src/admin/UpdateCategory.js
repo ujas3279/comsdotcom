@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import { getCategory, updateCategory } from './helper/adminapicall';
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../user/helper/FormContainer';
@@ -104,12 +103,8 @@ const UpdateCategory = ({match}) => {
 
     return (
         <>
-            {goBack()}
-            
-            {myCatogoryForm()}
-                    
-                    
-
+            {goBack()} 
+            {myCatogoryForm()}                   
         </>
     )
 }

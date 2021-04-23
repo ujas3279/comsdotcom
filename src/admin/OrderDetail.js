@@ -1,11 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import Base from '../core/Base';
 import { getOrder } from './helper/adminapicall';
-
 import { Link } from 'react-router-dom';
 import ImageHepler from '../core/helper/ImageHepler';
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
-
+import { Row, Col, ListGroup, Card } from 'react-bootstrap'
 
 
 const OrderDetail = ({match}) => {
@@ -38,9 +35,6 @@ const OrderDetail = ({match}) => {
     
     const preload = (orderId) => {
         getOrder(orderId).then(data=>{
-            console.log(data[0]);
-            
-
             if(data.error)
             {
                 setValues({ ...values, error: data.error });
@@ -59,7 +53,6 @@ const OrderDetail = ({match}) => {
                     transaction_id: order.transaction_id,
                     products: order.products
                 })
-                console.log(order.user.email)
             }
         }).catch(err=>{})
     }

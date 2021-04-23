@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import FormContainer from '../user/helper/FormContainer';
 import { createCategory } from './helper/adminapicall';
 import { Form, Button } from 'react-bootstrap'
@@ -86,10 +85,8 @@ const AddCategory = () => {
 
     return (
         <>
-            {goBack()}
-            
+            {goBack()}   
             {myCatogoryForm()}
-
         </>
     )
 }

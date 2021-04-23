@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
 import { signup } from "../auth/helper";
 import * as emailjs from "emailjs-com";
@@ -26,8 +25,6 @@ const Signup = () => {
   const { name, email, password,confirm_password, error, success, didRedirect } = values;
 
   const handleChange = name => event => {
-
-
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
@@ -60,7 +57,6 @@ const Signup = () => {
     {
       signup({ name, email, password })
       .then(data => {
-        console.log(data)
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {
@@ -77,7 +73,7 @@ const Signup = () => {
           });
         }
       })
-      .catch(console.log("Error in signup"));
+      .catch(err=>{});
     }
     else{
       setValues({ ...values, error: "password must be contain special character, small and capital letter and number ", success: false });

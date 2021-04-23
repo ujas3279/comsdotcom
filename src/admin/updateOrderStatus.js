@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import { getOrder,updateStatus } from './helper/adminapicall';
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../user/helper/FormContainer'
@@ -49,10 +48,8 @@ const UpdateOrderStatus = ({match}) => {
             }
         }).catch(err=>{})
     }
-    const preloadStatus = ()=>{
-        
+    const preloadStatus = ()=>{    
     }
-
     useEffect(() => {
         preload(match.params.orderId);
       }, []);
@@ -108,6 +105,7 @@ const UpdateOrderStatus = ({match}) => {
             <h1>Update Order Status</h1>
             <Form>
             {successMessage()}
+            {warningMessage()}
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control as= "select"

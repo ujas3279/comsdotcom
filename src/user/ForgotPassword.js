@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import FormContainer from './helper/FormContainer'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { getPasswordLink } from "./helper/userapicalls";
-import { authenticate } from "../auth/helper";
 
 
  const ForgotPassword = () => {

@@ -1,10 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import Base from '../core/Base';
 import { getOrder } from '../admin/helper/adminapicall';
-
 import { Link } from 'react-router-dom';
 import ImageHepler from '../core/helper/ImageHepler';
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup,  Card} from 'react-bootstrap'
 
 
 const CustomerOrderDetail = ({match}) => {
