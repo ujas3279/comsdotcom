@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Row, Col } from 'react-bootstrap'
+import {  Row } from 'react-bootstrap'
 import Menu from "./Menu";
 
 const Base = ({

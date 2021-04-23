@@ -1,14 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import {deleteCategory, getCategories} from "./helper/adminapicall"
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 const ManageCategories = () => {
-
     const [Categories, setCategories] = useState([]);
-
     const {user,token} = isAutheticated();
 
     const preload = () => {
@@ -19,7 +16,7 @@ const ManageCategories = () => {
             else{
                 setCategories(data);
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {
@@ -34,7 +31,7 @@ const ManageCategories = () => {
             else{
                 preload();
             }
-        })
+        }).catch(err=>{})
     }
 
     return (
@@ -78,8 +75,6 @@ const ManageCategories = () => {
 
           </tbody>
           </Table>
-
-      
     </>
     )
 }

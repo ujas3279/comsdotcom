@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
-import { isAutheticated, signup } from "../auth/helper";
-import * as emailjs from "emailjs-com";
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { isAutheticated } from "../auth/helper";
+import { Form, Button} from 'react-bootstrap'
 import FormContainer from '../user/helper/FormContainer'
 import { changePassword } from "../user/helper/userapicalls";
 require('dotenv').config();
@@ -27,12 +25,8 @@ const ChangePassword = () => {
   const {password,confirm_password, error, success, didRedirect,formData } = values;
 
   const handleChange = name => event => {
-
-
     setValues({ ...values, error: false, [name]: event.target.value });
   };
-
- 
   const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
@@ -77,8 +71,6 @@ const ChangePassword = () => {
       <FormContainer>
       <h1>Change Password</h1>
       <Form>
-        
-
         <Form.Group controlId='password'>
           <Form.Label>New Password</Form.Label>
           <Form.Control

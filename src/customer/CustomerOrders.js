@@ -1,10 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from "../auth/helper";
-import Base from '../core/Base';
 import { getOrder} from "../user/helper/userapicalls"
-import { Row, Col, Table, Button } from 'react-bootstrap';
-import { API } from '../backend';
+import {  Table, Button } from 'react-bootstrap';
 
 const CustomerOrders = () => {
 
@@ -25,12 +23,9 @@ const CustomerOrders = () => {
         
         
     }
-    console.log(orders)
     useEffect(() => {
         preload();
     }, [])
-
-    
 
     return (
         <>

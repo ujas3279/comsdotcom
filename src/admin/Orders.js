@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import { getOrders} from "./helper/adminapicall"
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import {  Table, Button } from 'react-bootstrap';
 
 const ManageOrders = () => {
 
@@ -17,7 +16,6 @@ const ManageOrders = () => {
                 console.log(data.error);
             }
             else{
-              console.log(data)
                 setOrders(data);
             }
         }).catch(err=>{})

@@ -1,14 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { isAutheticated } from '../auth/helper';
-import Base from '../core/Base';
 import {deleteProduct, getProducts} from "./helper/adminapicall"
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import {  Col, Table, Button } from 'react-bootstrap';
 import ImageHepler from '../core/helper/ImageHepler';
 const ManageProducts = () => {
-
     const [products, setProducts] = useState([]);
-
     const {user,token} = isAutheticated();
 
     const preload = () => {
@@ -19,7 +16,7 @@ const ManageProducts = () => {
             else{
                 setProducts(data);
             }
-        })
+        }).catch(err=>{})
     }
 
     useEffect(() => {
@@ -34,7 +31,7 @@ const ManageProducts = () => {
             else{
                 preload();
             }
-        })
+        }).catch(err=>{})
     }
 
     return (
@@ -74,7 +71,6 @@ const ManageProducts = () => {
                 </Button>
                   </td>
                   </tr>
-          
               )
           })}
 

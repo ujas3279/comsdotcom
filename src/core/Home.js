@@ -1,13 +1,8 @@
 import React,{useState,useEffect} from "react";
-import { API } from "../backend";
-import Base from "./Base";
 import Pcard from "./Card";
 import { getProducts } from "./helper/coreapicalls";
 import { Row, Col,Form } from 'react-bootstrap'
-import Menu from "./Menu";
-import { Carousel, Image } from 'react-bootstrap'
-import { Link } from "react-router-dom";
-import FormContainer from "../user/helper/FormContainer"
+
 export default function Home() {
 
   const [products, setProducts] = useState([])
@@ -21,12 +16,11 @@ export default function Home() {
       }
       else{
         setProducts(data);
-        console.log(data);
       }
     }).catch(err=>{})
   }
   const handleChange = (event) => {
-    setSearch(event.target.value);
+    setSearch(event.target.value.toLowerCase());
     setReload(!reload);
 };
 

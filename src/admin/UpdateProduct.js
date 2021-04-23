@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { getCategories,getProduct, updateProduct } from "./helper/adminapicall";
 import { isAutheticated } from "../auth/helper/index";
@@ -58,7 +57,7 @@ const UpdateProduct = ({match}) => {
          });
          
       }
-    });
+    }).catch(err=>{})
   };
 
   const preloadCategories = () => {
