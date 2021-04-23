@@ -41,7 +41,9 @@ const ManageCategories = () => {
         go back
       </Link>
 
-      <Table striped bordered responsive className='table-sm'>
+      {Categories.length===0 ? (
+        <h2 className="text-center">NO CATEGORY FOUND</h2>
+      ):(<Table striped bordered responsive className='table-sm'>
             <thead>
               <tr>
                 <th className="text-center">NAME</th>
@@ -74,7 +76,7 @@ const ManageCategories = () => {
           })}
 
           </tbody>
-          </Table>
+          </Table>)}
     </>
     )
 }

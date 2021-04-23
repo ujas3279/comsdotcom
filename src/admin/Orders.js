@@ -34,7 +34,10 @@ const ManageOrders = () => {
         go back
       </Link>
       
-      <Table striped bordered responsive className='table-sm'>
+     { orders.length===0 ?(
+          <h2 className="text-center">No Order Found</h2>
+      ) :
+       (<Table striped bordered responsive className='table-sm'>
             <thead>
               <tr>
                 <th className="text-center">NAME</th>
@@ -64,7 +67,7 @@ const ManageOrders = () => {
                 )
               })}
             </tbody>
-      </Table>
+      </Table>)}
 
           
     </>
