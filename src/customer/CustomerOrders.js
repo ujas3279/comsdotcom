@@ -34,7 +34,9 @@ const CustomerOrders = () => {
         go back
       </Link>
       
-      <Table striped bordered responsive className='table-sm'>
+      {orders.length===0 ? (
+        <h2 className="text-center">NO ORDER FOUND</h2>
+      ):(<Table striped bordered responsive className='table-sm'>
             <thead>
               <tr className="text-center">
                 <th >ID</th>
@@ -63,7 +65,7 @@ const CustomerOrders = () => {
                 )
               })}
             </tbody>
-      </Table>
+      </Table>)}
 
           
     </>

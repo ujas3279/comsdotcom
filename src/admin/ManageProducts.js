@@ -41,7 +41,9 @@ const ManageProducts = () => {
         go back
       </Link>
       
-      <Table striped bordered responsive className='table-sm'>
+      {products.length===0 ? (
+        <h2 className="text-center">NO PRODUCTS FOUND</h2>
+      ):(<Table striped bordered responsive className='table-sm'>
             <thead>
               <tr>
                 <th className="text-centre">PHOTO</th>
@@ -75,7 +77,7 @@ const ManageProducts = () => {
           })}
 
           </tbody>
-          </Table>
+          </Table>)}
     </>
     )
 }
