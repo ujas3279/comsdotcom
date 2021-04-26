@@ -10,8 +10,7 @@ export const getOrder = (userId,token) => {
       }
     }).then(response => {
       return response.json();}
-      ).
-      catch(err => console.log(err))
+      ).catch(err => console.log(err))
   }
 
   //change Password
@@ -26,8 +25,7 @@ export const getOrder = (userId,token) => {
       body: JSON.stringify(password)
     }).then(response => {
       return response.json();}
-      ).
-      catch(err => console.log(err))
+      ).catch(err => console.log(err))
   }
 
   //todo
