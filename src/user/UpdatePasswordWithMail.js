@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 import { isAutheticated } from "../auth/helper";
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from './helper/FormContainer'
 import { forgotPassword } from "./helper/userapicalls";
 require('dotenv').config();
-
-
 const UpdatePasswordWithMail = ({match}) => {
   console.log(match.params.userId);
   console.log(match.params.uniquestring);
-
-  const strength=undefined;
-  const color=undefined;
 
   const [values, setValues] = useState({
     password: "",

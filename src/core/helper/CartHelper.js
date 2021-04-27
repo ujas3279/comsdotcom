@@ -32,6 +32,12 @@ export const addItemToCart = (item,count1, next) => {
       if (localStorage.getItem("cart")) {
         return JSON.parse(localStorage.getItem("cart"));
       }
+      else
+      {
+        let cart=[];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        return JSON.parse(localStorage.getItem("cart"));
+      }
     }
   };
   

@@ -60,14 +60,11 @@ const CustomerOrders = () => {
                   <Button className="brn-sm">Order detail</Button>
                 </Link>
                   </td>
-                
                   </tr>
                 )
               })}
             </tbody>
-      </Table>)}
-
-          
+      </Table>)}          
     </>
     )
 }
