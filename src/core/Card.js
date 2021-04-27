@@ -34,7 +34,7 @@ const Pcard = ({
     };  
 
     return (
-      <Card className='my-3 p-3 rounded'>
+      <Card className='my-3  rounded'>
           {getARedirect(redirect)}
           <Link
             to={`product/${product._id}`}
@@ -51,18 +51,7 @@ const Pcard = ({
             </Link>
 
           <Card.Text as='h5'><i class="fa fa-inr"></i>{cartPrice}</Card.Text>      
-          
-          
-
-          {removeFromCart && (
-            <Button onClick={() => {
-              removeItemFromCart(product._id);
-              setReload(!reload)}} className='btn-block' type='button'>
-                Remove from cart
-            </Button>
-          )}
-         {removeFromCart && (<h5>Quantity : {product.count}</h5>
-                         )}       
+                
         </Card.Body>
       </Card>
     );
