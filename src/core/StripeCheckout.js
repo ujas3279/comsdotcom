@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Toast from 'react-bootstrap/Toast'
 import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
-import { ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { ListGroup, Image, Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link, Redirect } from "react-router-dom";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
@@ -22,9 +21,7 @@ const StripeCheckout = ({
     error: "",
     address: ""
   });
-
-  const [show, setShow] = useState(false);
-
+  
   const {loading, success, error, address} = data
 
   const usertoken = isAutheticated() && isAutheticated().token;
@@ -80,10 +77,14 @@ let famount=0;
         } 
         setData({
           ...data,
-          loading: true,
           success:true
         }) 
         cartEmpty(()=>{    
+        })  
+        setData({
+          ...data,
+          loading: false,
+          success:true
         })
         setReload(!reload);
         createOrder(userId, usertoken, orderData);
@@ -107,7 +108,12 @@ let famount=0;
       >
         <Button type='button'
                 className='btn-block'
-                disabled={products.length === 0} onClick={() => setShow(true)}>Process To Checkout</Button>
+                disabled={products.length === 0} onClick={() => {
+                  setData({
+                    loading: true
+                  })}}>{loading && (<i className="fa fa-refresh fa-spin " style={{ marginRight:"5px"}}/>)}
+                  {loading && <span>Please wait...</span>}
+                  {!loading && <span>Proceed to Checkout</span>}</Button>
       </StripeCheckoutButton>
     ) : (
       <Link to="/signin">
@@ -116,14 +122,19 @@ let famount=0;
     )}
     </>
   };
+  
 
+
+  
   return (
     <div>
+      
       {success && (
-      <Toast  onClose={() => setShow(false)} show={show} delay={3000} autohide>
-      <Toast.Body className="alert alert-success m-0"><strong>Your order is successfully placed</strong></Toast.Body>
-    </Toast>
-    )}
+        <Alert variant="success">
+        Your order is successfully placed. Check your{' '}
+        <Alert.Link href={`/user/orders/${userId}`}>order here</Alert.Link>.
+      </Alert>
+      )}
       <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
