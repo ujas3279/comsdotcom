@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Toast from 'react-bootstrap/Toast'
 import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
 import { ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
 import { createOrder } from "./helper/OrderHelper";
@@ -21,6 +22,10 @@ const StripeCheckout = ({
     error: "",
     address: ""
   });
+
+  const [show, setShow] = useState(false);
+
+  const {loading, success, error, address} = data
 
   const usertoken = isAutheticated() && isAutheticated().token;
   const userId = isAutheticated() && isAutheticated().user._id;
@@ -72,18 +77,26 @@ let famount=0;
               address:useraddress,
               amount:famount
               
-        }  
+        } 
+        setData({
+          ...data,
+          loading: true,
+          success:true
+        }) 
         cartEmpty(()=>{    
         })
         setReload(!reload);
         createOrder(userId, usertoken, orderData);
         SendEmail(maildata);
+        
       })
       .catch(error => console.log(error));
   };
 
   const showStripeButton = () => {
-    return isAutheticated() ? (
+    return <>
+    
+    {isAutheticated() ? (
       <StripeCheckoutButton
         stripeKey = {process.env.REACT_APP_PUB_KEY}
         token={makePayment}
@@ -94,17 +107,23 @@ let famount=0;
       >
         <Button type='button'
                 className='btn-block'
-                disabled={products.length === 0}>Process To Checkout</Button>
+                disabled={products.length === 0} onClick={() => setShow(true)}>Process To Checkout</Button>
       </StripeCheckoutButton>
     ) : (
       <Link to="/signin">
         <button className="btn btn-warning">Signin</button>
       </Link>
-    );
+    )}
+    </>
   };
 
   return (
     <div>
+      {success && (
+      <Toast  onClose={() => setShow(false)} show={show} delay={3000} autohide>
+      <Toast.Body className="alert alert-success m-0"><strong>Your order is successfully placed</strong></Toast.Body>
+    </Toast>
+    )}
       <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
