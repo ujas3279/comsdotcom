@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "./helper/CartHelper";
-import { ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { ListGroup, Image, Form, Button, Card, Alert } from 'react-bootstrap'
+import { Link, Redirect } from "react-router-dom";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
 import { createOrder } from "./helper/OrderHelper";
@@ -21,6 +21,8 @@ const StripeCheckout = ({
     error: "",
     address: ""
   });
+  
+  const {loading, success, error, address} = data
 
   const usertoken = isAutheticated() && isAutheticated().token;
   const userId = isAutheticated() && isAutheticated().user._id;
@@ -72,18 +74,30 @@ let famount=0;
               address:useraddress,
               amount:famount
               
-        }  
+        } 
+        setData({
+          ...data,
+          success:true
+        }) 
         cartEmpty(()=>{    
+        })  
+        setData({
+          ...data,
+          loading: false,
+          success:true
         })
         setReload(!reload);
         createOrder(userId, usertoken, orderData);
         SendEmail(maildata);
+        
       })
       .catch(error => console.log(error));
   };
 
   const showStripeButton = () => {
-    return isAutheticated() ? (
+    return <>
+    
+    {isAutheticated() ? (
       <StripeCheckoutButton
         stripeKey = {process.env.REACT_APP_PUB_KEY}
         token={makePayment}
@@ -94,17 +108,33 @@ let famount=0;
       >
         <Button type='button'
                 className='btn-block'
-                disabled={products.length === 0}>Process To Checkout</Button>
+                disabled={products.length === 0} onClick={() => {
+                  setData({
+                    loading: true
+                  })}}>{loading && (<i className="fa fa-refresh fa-spin " style={{ marginRight:"5px"}}/>)}
+                  {loading && <span>Please wait...</span>}
+                  {!loading && <span>Proceed to Checkout</span>}</Button>
       </StripeCheckoutButton>
     ) : (
       <Link to="/signin">
         <button className="btn btn-warning">Signin</button>
       </Link>
-    );
+    )}
+    </>
   };
+  
 
+
+  
   return (
     <div>
+      
+      {success && (
+        <Alert variant="success">
+        Your order is successfully placed. Check your{' '}
+        <Alert.Link href={`/user/orders/${userId}`}>order here</Alert.Link>.
+      </Alert>
+      )}
       <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
