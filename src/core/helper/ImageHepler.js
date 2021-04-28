@@ -11,6 +11,7 @@ const ImageHepler = ({product}) => {
                 src={imageurl}
                 variant='top'
                 alt={product.name} fluid
+                className="rounded"
             />
     )
 }

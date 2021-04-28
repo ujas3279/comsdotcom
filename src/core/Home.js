@@ -41,7 +41,8 @@ export default function Home() {
                 className='searchbox'
               ></Form.Control>
       </Form.Group>
-      {(search=="") && (<h1>Latest Products</h1>)}
+      
+      {(search=="") && (<h1 className="text-center">Products</h1>)}
       <Row>
           {products.map((product, index) => (
             product.name.toLowerCase().match(`${search}`) && (<Col key={index} sm={12} md={6} lg={4} xl={3}>
